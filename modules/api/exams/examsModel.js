@@ -7,7 +7,9 @@ var exams= new Schema({
     subject: {type: String, required: true},
     numberOfQuestions: {type: Number, required: true},
     answers:{type: Array},
-    examspath:{type:String}
+    examspath:{type:String},
+    level:{type:String,required:true},
+    year:{type: String}
 },{timestamps : true})
 
 exams.index({school : 'text'});

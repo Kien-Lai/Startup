@@ -59,10 +59,84 @@ var saveExam= (object, callback)=>{
     }
   }
 
+  var searchExamsByYear = (searchString,cb) =>{
+    try {
+      examsModel.find({'year': searchString})
+      .exec((err, doc) => {
+        if (err) {
+          cb(err);
+          console.log(err);
+        } else {
+          cb(null, doc);
+        }
+      })
+    } catch (e) {
+      console.log(e);
+      cb(e);
+    }
+  }
 
+  var searchExamsByLevel = (searchString,cb) =>{
+    try {
+      examsModel.find({'level': searchString})
+      .exec((err, doc) => {
+        if (err) {
+          cb(err);
+          console.log(err);
+        } else {
+          cb(null, doc);
+        }
+      })
+    } catch (e) {
+      console.log(e);
+      cb(e);
+    }
+  }
+
+  var updateExamsById = (id,data,cb) => {
+    examsModel.count({'id':id},(err,count) => {
+      if(count==0){
+        console.log('khong tim thay id');
+        return cb('khong thay id')
+      }else {
+        examsModel.update({'id':id},data,(err,doc) =>{
+          if(err){
+            console.log(err);
+            cb(err);
+          }else{
+            console.log('ok');
+            cb(null,err);
+          }
+        });
+      }
+    })
+  }
+
+  var deleteExamsById = (id,cb) => {
+    examsModel.count({'id':id},(err,count) => {
+      if(count==0){
+        console.log('khong tim thay id');
+        return cb('khong thay id')
+      }else {
+        examsModel.remove({'id':id},(err,doc) =>{
+          if(err){
+            console.log(err);
+            cb(err);
+          }else{
+            console.log('ok');
+            cb(null,err);
+          }
+        });
+      }
+    })
+  }
 
 module.exports= {
   saveExam,
   getAllExams,
-  searchExamsBySchool
+  searchExamsBySchool,
+  searchExamsByYear,
+  searchExamsByLevel,
+  updateExamsById,
+  deleteExamsById
 }
