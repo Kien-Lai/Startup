@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>Mlab Prosseser</title>
+  <!--Import Google Icon Font-->
+  <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <link rel="stylesheet" type="text/css" href="css/index.css">
+  <script type="text/javascript">
+  var scroll_to_aboutus = function() {
+    $("html, body").animate({
+      scrollTop: 1000
+    }, "slow");
+  }
+  </script>
+</head>
+
+<body>
+  {{> header }}
+  {{{body}}}
+  {{> banner }}
+  {{> about }}
+  {{> footer}}
+</body>
+
+</html>
