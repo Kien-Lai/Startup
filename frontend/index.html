@@ -10,6 +10,7 @@
   <link type="text/css" rel="stylesheet" href="public/css/materialize.min.css" media="screen,projection" />
   <!--Let browser know website is optimized for mobile-->
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="public/js/materialize.js"></script>
   <script src="public/js/init.js"></script>
@@ -24,19 +25,17 @@
 </head>
 
 <body>
-  <div class="container main-container">
     <nav class="white">
     <div class="nav-wrapper nav-wrapper-login">
       <a href="#"><img src="public/images/home.png" id="home"></a>
-      <img src="public/images/main_logo_1.png" id="logo">
+      <img src="public/images/main_logo.png" id="logo">
       <ul class="right hide-on-med-and-down ">
-        <li><a href="#" class="black-text menu" onclick="scroll_to_aboutus()">About us</a></li>
-        <li><a href="#" class="black-text menu">Login</a></li>
-        <li><a href="#" class="black-text menu">Signin</a></li>
+        <li onclick="scroll_to_aboutus()"><a href="#" class="black-text menu"><i class="fa fa-globe fa" aria-hidden="true"></i>  About us</a></li>
+        <li><a href="#" class="black-text menu"><i class="fa fa-sign-in fa" aria-hidden="true"></i>  Login</a></li>
+        <li><a href="#" class="black-text menu"><i class="fa fa-heartbeat" aria-hidden="true"></i>  Signin</a></li>
       </ul>
       <ul id="nav-mobile" class="side-nav">
-        <li>
-          <a href="#" class="black-text onclick=" scroll_to_aboutus() ">About us</a></li>
+          <li><a href="#" class="black-text onclick=" scroll_to_aboutus() ">About us</a></li>
           <li><a href="# " class="black-text ">Login</a></li>
           <li><a href="# " class="black-text ">Signin</a></li>
         </ul>
@@ -68,7 +67,7 @@
       </div>
     </div>
     <div class="parallax ">
-      <img src="public/images/loginpage1.png " alt=" ">
+      <img src="public/images/index-background.png " alt=" ">
     </div>
   </div>
 
@@ -99,7 +98,7 @@
       <h1 class="white-text center ">Join With Us</h1>
     </div>
     <div class="parallax ">
-      <img src="public/images/teamdev.jpg " alt=" ">
+      <img src="public/images/index-picture-of-team.jpg " alt=" ">
     </div>
   </div>
 
@@ -162,7 +161,6 @@
       </div>
     </div>
   </footer>
-  </div>
 </body>
 
 </html>

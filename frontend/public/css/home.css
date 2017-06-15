@@ -1,0 +1,64 @@
+#home{
+max-width: 100%;
+max-height: 100%;
+position: absolute;
+top: 0px;
+left: 0px;
+}
+
+#logo{
+  max-width: 100%;
+  max-height: 100%;
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  margin-left: -100px;
+}
+
+#menu-vertical ul {
+  width: 100%;
+  height: 100vh;
+  padding: 0;
+  list-style-type: none;
+  text-align: left;
+  margin: 0px 0px 0px 0px;
+}
+
+#menu-vertical li{
+  text-align: center;
+  height: 50px;
+  line-height: 50px;
+  border-bottom: 1px solid #e8e8e8;
+}
+
+#menu-vertical li a{
+  color: white;
+}
+
+#menu-vertical li:hover{
+  background-color: #CDE2CD;
+}
+
+#menu-vertical{
+  border-radius: 5px;
+}
+
+#quote{
+  padding-left: 10px;
+  margin-top: 2px;
+  border-radius: 5px;
+  border: 3px solid #4DB6AC;
+}
+
+#exams{
+  border: 3px solid #4DB6AC;
+  border-radius:  5px;
+}
+
+.icon_of_menu_holizontal{
+  height: 100%;
+}
+
+menu-holizontal{
+  border-style: 5px solid #ffffff;
+}
