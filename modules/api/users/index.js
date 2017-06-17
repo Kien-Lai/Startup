@@ -22,7 +22,7 @@
       clientID: "1923123451292803",
       clientSecret: "1266e1317650be9c89368b880dcddd03",
       callbackURL: "http://localhost:6969/users/aufb/cb",
-      profileFields: ['email','gender','locale', 'displayName']
+      profileFields: ['email','gender','locale', 'displayName','photos']
     },
     (accessToken, refreshToken, profile, done) => {
       console.log(profile);
@@ -32,7 +32,8 @@
         else{
           var newUser = {
             username : profile._json.name,
-            email : profile._json.email
+            email : profile._json.email,
+            avatar : profile.photos ? profile.photos[0].value : '/img/faces/unknown-user-pic.jpg'
         }
         usersController.createUser(newUser,(er,doc) => {
           if(er) console.log(er);
