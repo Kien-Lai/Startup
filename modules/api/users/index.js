@@ -90,8 +90,12 @@
 
   Router.get('/aufb/cb', Passport.authenticate('facebook', {
     failureRedirect: '/users',
-    successRedirect: '/users/loginOk'
+    successRedirect: '/users/home'
   }))
+
+  Router.get('/home', (req,res) => {
+    res.render('home');
+  })
 
   Router.get('/', (req,res) => {
     res.sendFile(__dirname + '/index.html');
