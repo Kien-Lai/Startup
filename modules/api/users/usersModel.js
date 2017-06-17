@@ -3,9 +3,9 @@
   const Schema = mongoose.Schema;
 
   var usersSchema = new Schema({
-    id : {type : Number,require : true, unique: true},
-    username : {type : String,require : true,unique:true},
-    password : { type : String,require : true,minlength : 6},
+    id : {type : Number,required : true, unique: true},
+    username : {type : String,required : true,unique:true},
+    password : { type : String,minlength : 6},
     email :
     { type : String, required : true, unique : true, validate : {
       validator :
