@@ -4,6 +4,7 @@ const Passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy
 const usersModel = require('./usersModel');
 const usersController = require('./usersController');
+const examsController= require('../exams/examsController');
 const session = require('express-session');
 const bcrypt = require('bcrypt');
 const passportfb = require('passport-facebook').Strategy;
@@ -107,7 +108,19 @@ Router.route('/login')
                                       successRedirect: '/users/loginOk'}))
 
 Router.get('/loginOk', (req,res) => {
-  res.render('home',{user: req.user});
+  examsController.getAllExams((err, data)=>{
+    if(err){
+      res.send(err);
+    }else{
+      //var examsOrigin= JSON.parse(data);
+      // var exams;
+      // examsOrigin.forEach((element)=>{
+      //   exams.push(element);
+      // })
+      res.render('home',{user: req.user, exams: data});
+    }
+  })
+  //res.render('home',{user: req.user});
 
 })
 
