@@ -7,9 +7,21 @@ const hbs = require('express-handlebars');
 const path = require('path');
 const examsRouter = require(__dirname + '/modules/api/exams/');
 const usersRouter = require(__dirname + '/modules/api/users/');
+const usersController = require('./modules/api/users/usersController');
+const session = require('express-session');
+const examsController = require('./modules/api/exams/examsController');
 
 const app = express();
 
+app.use(session({
+  secret: "khang",
+  cookie: {
+    maxAge : 1000*60*5*1000 //khoang thoi gian luu cookie
+  }
+  }))
+
+app.use(Passport.initialize());
+app.use(Passport.session());
 app.use(express.static(__dirname + '/public'));
 // Set up handlebars engine
 app.engine('hbs', hbs({
@@ -28,8 +40,20 @@ app.use('/exams', examsRouter);
 app.use('/users', usersRouter);
 
 app.get('/', (req, res) => {
+  // console.log(req.Session.passport.user);
   res.render('index');
+  console.log(req.user);
 });
+
+app.get('/home', (req,res) => {
+  examsController.getAllExams((err, data)=>{
+    if(err){
+      res.send(err);
+    }else{
+      res.render('home',{user: req.user, exams: data});
+    }
+  })
+})
 
 app.get('/test', (req, res) => {
   res.render('home', {abc: "Hehehehe"});
