@@ -24,6 +24,7 @@
     "handlebars": "^4.0.10",
     "handlebars-helpers": "^0.8.2",
     "mongoose": "^4.10.6",
+    "node-pre-gyp": "^0.6.36",
     "nodemon": "^1.11.0",
     "passport": "^0.3.2",
     "passport-facebook": "^2.1.1",
