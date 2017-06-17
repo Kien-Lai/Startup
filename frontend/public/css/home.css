@@ -70,3 +70,19 @@ left: 0px;
 menu-holizontal{
   border-style: 5px solid #ffffff;
 }
+
+#block_avatar{
+  max-height: 100%;
+  position: relative;
+  padding-right: 20px;
+}
+
+#avatar{
+  display: inline-block;
+  border-radius: 100%;
+  margin:auto;
+  position:absolute;
+  top:0;
+  bottom:0;
+  left: -60%;
+}
