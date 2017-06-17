@@ -36,7 +36,7 @@ examsModel.find({},{name: 1,_id: 0})
     cb(err);
     console.log('err');
   }else{
-    cb(null,doc)
+    cb(null,doc);
     console.log('ok');
   }
 })

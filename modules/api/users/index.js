@@ -117,7 +117,7 @@ Router.get('/loginOk', (req,res) => {
       // examsOrigin.forEach((element)=>{
       //   exams.push(element);
       // })
-      res.send(data);
+      res.render('home',{user: req.user, exams: data});
     }
   })
   //res.render('home',{user: req.user});
