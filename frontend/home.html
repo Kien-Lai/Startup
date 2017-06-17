@@ -16,32 +16,40 @@
     <script src="public/js/init.js"></script>
     <link rel="stylesheet" href="../font-awesome/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="public/css/home.css">
+    <script>
+    $(document).ready(function () {
+      $('.block_slidedown:eq(0)').slideDown('slow');
+      $('.block_slidedown:eq(1)').slideDown(2000);
+    })
+    </script>
   </head>
   <body>
-    <nav class="white">
-      <div class="nav-wrapper">
-        <a href="#"><img src="public/images/home.png" id="home"></a>
-        <img src="public/images/main_logo.png" id="logo">
-      </div>
-    </nav>
+    <div class="wrapper-nav">
+      <nav class="white">
+        <div class="nav-wrapper">
+          <a href="#"><img src="public/images/home.png" id="home"></a>
+          <img src="public/images/main_logo.png" id="logo">
+        </div>
+      </nav>
 
-    <nav class="teal lighten-2 menu-holizontal">
-      <ul class="left">
-        <li class="active"><a href="#"><i class="fa fa-book icon_of_menu_holizontal"  aria-hidden="true"></i>  Môn Học</a></li>
-        <li><a href="#"><i class="fa fa-bar-chart icon_of_menu_holizontal" aria-hidden="true"></i>  Tiến Trình</a></li>
-        <li><a href="#"><i class="fa fa-newspaper-o icon_of_menu_holizontal" aria-hidden="true"></i>  Tin Tức</a></li>
-        <li><a href="#"><i class="fa fa-commenting icon_of_menu_holizontal" aria-hidden="true"></i>  Diễn đàn</a></li>
-      </ul>
-      <ul class="right">
-        <li><a href="#"><i class="fa fa-user-circle-o icon_of_menu_holizontal" aria-hidden="true"></i> Quản Lý Tài Khoản</a></li>
-      </ul>
-    </nav>
+      <nav class="teal lighten-2 menu-holizontal">
+        <ul class="left">
+          <li class="active"><a href="#"><i class="fa fa-book icon_of_menu_holizontal"  aria-hidden="true"></i>  Môn Học</a></li>
+          <li><a href="#"><i class="fa fa-bar-chart icon_of_menu_holizontal" aria-hidden="true"></i>  Tiến Trình</a></li>
+          <li><a href="#"><i class="fa fa-newspaper-o icon_of_menu_holizontal" aria-hidden="true"></i>  Tin Tức</a></li>
+          <li><a href="#"><i class="fa fa-commenting icon_of_menu_holizontal" aria-hidden="true"></i>  Diễn đàn</a></li>
+        </ul>
+        <ul class="right">
+          <li><a href="#"><i class="fa fa-user-circle-o icon_of_menu_holizontal" aria-hidden="true"></i> Quản Lý Tài Khoản</a></li>
+        </ul>
+      </nav>
+    </div>
 
     <br>
     <div class="divider"></div>
 
     <div class="row">
-      <div class="col s2 l2">
+      <div class="col s2 l2" >
         <div id="menu-vertical" class="teal lighten-2">
           <ul>
             <li><a href="#">Toán</a></li>
@@ -55,7 +63,7 @@
       <div class="col s8 l8">
         <div class="row">
           <div class="col s12 l12">
-            <div id="quote">
+            <div id="quote" class="block_slidedown">
               <blockquote>
                 Quote' today:
                 <br>
@@ -64,7 +72,7 @@
               </blockquote>
             </div>
             <br>
-            <div id="exams">
+            <div id="exams" class="block_slidedown">
               <h6>Danh sách đề thi:</h6>
               <h6><i class="fa fa-star yellow-text fa-1x" aria-hidden="true"></i> Dễ</h6>
               <div class="collection">
