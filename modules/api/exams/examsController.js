@@ -30,7 +30,7 @@ var saveExam= (object, callback)=>{
 }
 
 var getAllExams = (cb) => {
-examsModel.find({},{name: 1,_id: 0})
+examsModel.find({},{name: 1,_id: 0, level:1})
 .exec((err,doc) => {
   if(err){
     cb(err);
