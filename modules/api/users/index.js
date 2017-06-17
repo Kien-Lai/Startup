@@ -9,12 +9,7 @@ const session = require('express-session');
 const bcrypt = require('bcrypt');
 const passportfb = require('passport-facebook').Strategy;
 
-Router.use(session({
-  secret: "khang",
-  cookie: {
-    maxAge : 1000*60*5 //khoang thoi gian luu cookie
-  }
-  }))
+
 Router.use(Passport.initialize());
 Router.use(Passport.session());
 
@@ -26,7 +21,7 @@ Passport.use(new passportfb(
     profileFields: ['email','gender','locale', 'displayName','photos']
   },
   (accessToken, refreshToken, profile, done) => {
-    console.log(profile);
+
     usersController.findUserByEmail(profile._json.email,(err,doc) => {
       if(err) return done(err)
       if(doc) return done(null,doc)
@@ -73,6 +68,11 @@ Passport.serializeUser((user, done) => {
   done(null,user.email);
 })
 
+Router.get('/getEmail', (req,res) => {
+  res.send(req.session);
+  console.log(req.session.passport.user);
+})
+
 //so sanh email o session voi trong db
 Passport.deserializeUser((email,done) => {
   usersController.findUserByEmail(email,(err,data) => {
@@ -82,6 +82,7 @@ Passport.deserializeUser((email,done) => {
     }else{
       if (data) {
         return done(null,data);
+        console.log('h');
       }else {
         return done(null,false);
       }
@@ -93,7 +94,7 @@ Router.get('/auth/fb',Passport.authenticate('facebook', {scope: ['email']}));
 
 Router.get('/aufb/cb', Passport.authenticate('facebook', {
   failureRedirect: '/users',
-  successRedirect: '/users/loginOk'
+  successRedirect: '/home'
 }))
 
 Router.get('/', (req,res) => {
@@ -105,7 +106,7 @@ Router.route('/login')
   res.sendFile(__dirname + '/login.html');
 })
 .post(Passport.authenticate('local', {failureRedirect: '/users/loginFail',
-                                      successRedirect: '/users/loginOk'}))
+                                      successRedirect: '/home'}))
 
 Router.get('/loginOk', (req,res) => {
   examsController.getAllExams((err, data)=>{
@@ -131,6 +132,7 @@ Router.get('/loginFail',(req,res) => {
 Router.get('/private', (req,res) => {
   if(req.isAuthenticated()){
     res.send('bạn đã login');
+    console.log(req.user);
   }else{
     res.send('bạn chưa login');
   }

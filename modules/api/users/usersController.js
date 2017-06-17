@@ -71,7 +71,6 @@ var searchUserByUsernameAndEmail = (searchString, callback) => {
   }
 }
 
-
 module.exports = {
   createUser,
   searchUserByUsernameAndEmail,
