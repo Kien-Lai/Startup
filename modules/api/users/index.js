@@ -9,7 +9,6 @@ const session = require('express-session');
 const bcrypt = require('bcrypt');
 const passportfb = require('passport-facebook').Strategy;
 
-
 Router.use(Passport.initialize());
 Router.use(Passport.session());
 
@@ -118,6 +117,7 @@ Router.get('/loginOk', (req,res) => {
       // examsOrigin.forEach((element)=>{
       //   exams.push(element);
       // })
+      console.log(data);
       res.render('home',{user: req.user, exams: data});
     }
   })
@@ -128,7 +128,8 @@ Router.get('/loginOk', (req,res) => {
 Router.get('/loginFail',(req,res) => {
   res.send('ban da nhap sai');
 })
- //test da login hay chua
+
+ // test da login hay chua
 Router.get('/private', (req,res) => {
   if(req.isAuthenticated()){
     res.send('bạn đã login');
@@ -154,10 +155,11 @@ Router.post('/signup', (req, res) => {
     }
   })
 });
-//logout
+
+// logout
 Router.get('/logout', (req, res) => {
   req.logout();
-  res.redirect('/users/login');
+  res.redirect('/');
 });
 
 Router.get('/search', (req, res) => {
