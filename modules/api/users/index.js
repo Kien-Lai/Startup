@@ -107,7 +107,8 @@ Router.route('/login')
                                       successRedirect: '/users/loginOk'}))
 
 Router.get('/loginOk', (req,res) => {
-  res.render('home');
+  res.render('home',{user: req.user});
+
 })
 
 Router.get('/loginFail',(req,res) => {
