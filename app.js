@@ -14,7 +14,7 @@ const examsRouter = require(__dirname + '/modules/api/exams/');
 const usersRouter = require(__dirname + '/modules/api/users/');
 const usersController = require('./modules/api/users/usersController');
 const examsController = require('./modules/api/exams/examsController');
-
+const middleware= require('./modules/api/middleware/middleware.js');
 const app = express();
 
 app.use(session({
@@ -44,11 +44,12 @@ app.use(bodyParser.urlencoded({ extend: true }));
 app.use('/exams', examsRouter);
 app.use('/users', usersRouter);
 
-app.get('/', (req, res) => {
+app.get('/',middleware.isGuest, (req, res) => {
   res.render('index');
 });
 
-app.get('/home', (req,res) => {
+
+app.get('/home',middleware.confirmLogin,(req,res) => {
   examsController.getAllExams((err, data)=>{
     if(err){
       res.send(err);
@@ -57,7 +58,7 @@ app.get('/home', (req,res) => {
       res.render('home',{user: req.user, exams: data});
     }
   })
-})
+});
 
 mongoose.connect(config.connectionString, (err) => {
   if (err) {

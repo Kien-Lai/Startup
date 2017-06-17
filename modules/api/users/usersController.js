@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 
 const usersModel = require('./usersModel');
 
-
 var findUserByEmail = (data,cb)=> {
   usersModel.findOne({email:data}, (err,doc) => {
     if(err) return cb(err);

@@ -1,7 +1,7 @@
 const express = require('express');
 const Router = express.Router();
 const Passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy
+const LocalStrategy = require('passport-local').Strategy;
 const usersModel = require('./usersModel');
 const usersController = require('./usersController');
 const examsController= require('../exams/examsController');
