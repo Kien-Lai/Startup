@@ -19,8 +19,8 @@
     createdDate :  { type : Date, default : new Date().toISOString() },
     updatedDate :  { type : Date, default : new Date().toISOString() },
     // profile : { type : ObjectId, ref : 'profiles', default : null},
-    rank: {type : Number,require : true},
-    point: {type :Number}
+    rank: {type : Number,required : true,default: 0},
+    point: {type :Number,default: 0}
   })
 
   usersSchema.pre('save', function (next) {

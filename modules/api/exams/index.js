@@ -11,6 +11,7 @@
     object.examspath = req.body.examspath;
     object.level = req.body.level;
     object.year = req.body.year;
+    object.name = req.body.name;
     examsController.saveExam(object, (err, data)=>{
       if(err){
         console.log(err);
