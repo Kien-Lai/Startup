@@ -9,9 +9,10 @@ var exams= new Schema({
     answers:{type: Array},
     examspath:{type:String},
     level:{type:String,required:true},
-    year:{type: String}
+    year:{type: String},
+    name: {type: String, required: true, unique:true}
 },{timestamps : true})
 
-exams.index({school : 'text'});
+exams.index({name : 'text'});
 
 module.exports = mongoose.model('exams',exams);
