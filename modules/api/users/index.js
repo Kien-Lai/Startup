@@ -16,7 +16,7 @@ Passport.use(new passportfb(
   {
     clientID: "1923123451292803",
     clientSecret: "1266e1317650be9c89368b880dcddd03",
-    callbackURL: "http://localhost:6969/users/aufb/cb",
+    callbackURL: "http://localhost:6969/api/users/aufb/cb",
     profileFields: ['email','gender','locale', 'displayName','photos']
   },
   (accessToken, refreshToken, profile, done) => {
@@ -92,8 +92,8 @@ Passport.deserializeUser((email,done) => {
 Router.get('/auth/fb',Passport.authenticate('facebook', {scope: ['email']}));
 
 Router.get('/aufb/cb', Passport.authenticate('facebook', {
-  failureRedirect: '/users',
-  successRedirect: '/home'
+  failureRedirect: '/',
+  successRedirect: '/home/math'
 }))
 
 Router.get('/', (req,res) => {
@@ -104,8 +104,8 @@ Router.route('/login')
 .get((req,res) => {
   res.sendFile(__dirname + '/login.html');
 })
-.post(Passport.authenticate('local', {failureRedirect: '/users/loginFail',
-                                      successRedirect: '/home'}))
+.post(Passport.authenticate('local', {failureRedirect: '/',
+                                      successRedirect: '/home/math'}))
 
 Router.get('/loginOk', (req,res) => {
   examsController.getAllExams((err, data)=>{
@@ -123,10 +123,6 @@ Router.get('/loginOk', (req,res) => {
   })
   //res.render('home',{user: req.user});
 
-})
-
-Router.get('/loginFail',(req,res) => {
-  res.send('ban da nhap sai');
 })
 
  // test da login hay chua
@@ -151,7 +147,7 @@ Router.post('/signup', (req, res) => {
       console.log(err);
       res.send('Co loi');
     } else {
-      res.send('Tao user thanh cong');
+      res.redirect('/home/math');
     }
   })
 });

@@ -23,6 +23,16 @@
     })
   })
 
+  Router.get('/math',(req,res)=>{
+    examsController.getAllExamsOfMath((err, data)=>{
+      if(err){
+        res.send('fail');
+      }else{
+        res.send(data);
+      }
+    })
+  })
+
   Router.get('/',(req,res) =>{
     if(req.query.school){
       examsController.searchExamsBySchool(req.query.school,(err,doc) =>{

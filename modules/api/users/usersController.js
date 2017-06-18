@@ -55,24 +55,9 @@ var getUserByUsername = (username, callback) => {
   }
 }
 
-var searchUserByUsernameAndEmail = (searchString, callback) => {
-  try {
-    usersModel.find({ $text: { $search: searchString } }).exec((err, doc) => {
-      if (err) {
-        callback(err);
-      } else {
-        callback(null, doc);
-      }
-    })
-  } catch (e) {
-    console.log(e);
-    callback(e);
-  }
-}
 
 module.exports = {
+  findUserByEmail,
   createUser,
-  searchUserByUsernameAndEmail,
-  getUserByUsername,
-  findUserByEmail
+  getUserByUsername
 }
