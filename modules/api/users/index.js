@@ -92,7 +92,7 @@ Passport.deserializeUser((email,done) => {
 Router.get('/auth/fb',Passport.authenticate('facebook', {scope: ['email']}));
 
 Router.get('/aufb/cb', Passport.authenticate('facebook', {
-  failureRedirect: '/api/users',
+  failureRedirect: '/',
   successRedirect: '/home/math'
 }))
 
@@ -104,7 +104,7 @@ Router.route('/login')
 .get((req,res) => {
   res.sendFile(__dirname + '/login.html');
 })
-.post(Passport.authenticate('local', {failureRedirect: 'api/users/loginFail',
+.post(Passport.authenticate('local', {failureRedirect: '/',
                                       successRedirect: '/home/math'}))
 
 Router.get('/loginOk', (req,res) => {
@@ -123,10 +123,6 @@ Router.get('/loginOk', (req,res) => {
   })
   //res.render('home',{user: req.user});
 
-})
-
-Router.get('/loginFail',(req,res) => {
-  res.send('ban da nhap sai');
 })
 
  // test da login hay chua
