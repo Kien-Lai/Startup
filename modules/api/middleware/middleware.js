@@ -20,7 +20,7 @@ var isGuest=(req,res,next)=>{
   if(!req.isAuthenticated()){
     next();
   }else{
-    res.redirect('/home');
+    res.redirect('/home/math');
   }
 }
 

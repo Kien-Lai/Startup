@@ -38,24 +38,68 @@ app.engine('hbs', hbs({
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
 
-app.set('users', './users');
+
 app.use(bodyParser.json({ extend: true }));
 app.use(bodyParser.urlencoded({ extend: true }));
-app.use('/exams', examsRouter);
-app.use('/users', usersRouter);
+app.use('/api/exams', examsRouter);
+app.use('/api/users', usersRouter);
 
 app.get('/',middleware.isGuest, (req, res) => {
   res.render('index');
 });
 
 
-app.get('/home',middleware.confirmLogin,(req,res) => {
-  examsController.getAllExams((err, data)=>{
+app.get('/home/math',middleware.confirmLogin,(req,res) => {
+  examsController.getAllExamsOfMath((err, data)=>{
     if(err){
       res.send(err);
     }else{
       console.log(data);
-      res.render('home',{user: req.user, exams: data});
+      res.render('home',{user: req.user, exams: data, subject: 'math'});
+    }
+  })
+});
+
+app.get('/home/phy',middleware.confirmLogin,(req,res) => {
+  examsController.getAllExamsOfPhy((err, data)=>{
+    if(err){
+      res.send(err);
+    }else{
+      console.log(data);
+      res.render('home',{user: req.user, exams: data, subject: 'math'});
+    }
+  })
+});
+
+app.get('/home/chem',middleware.confirmLogin,(req,res) => {
+  examsController.getAllExamsOfChem((err, data)=>{
+    if(err){
+      res.send(err);
+    }else{
+      console.log(data);
+      res.render('home',{user: req.user, exams: data, subject: 'math'});
+    }
+  })
+});
+
+app.get('/home/bio',middleware.confirmLogin,(req,res) => {
+  examsController.getAllExamsOfBio((err, data)=>{
+    if(err){
+      res.send(err);
+    }else{
+      console.log(data);
+      res.render('home',{user: req.user, exams: data, subject: 'math'});
+    }
+  })
+});
+
+app.get('/home/Eng',middleware.confirmLogin,(req,res) => {
+  examsController.getAllExamsOfEng((err, data)=>{
+    if(err){
+      res.send(err);
+    }else{
+      console.log(data);
+      res.render('home',{user: req.user, exams: data, subject: 'math'});
     }
   })
 });
