@@ -29,8 +29,8 @@ var saveExam= (object, callback)=>{
   })
 }
 
-var getAllExams = (cb) => {
-examsModel.find({},{name: 1,_id: 0, level:1})
+var getAllExamsOfMath = (cb) => {
+examsModel.find({subject:"math"},{name: 1,_id: 0, level:1})
 .exec((err,doc) => {
   if(err){
     cb(err);
@@ -42,101 +42,65 @@ examsModel.find({},{name: 1,_id: 0, level:1})
 })
 }
 
-var searchExamsBySchool = (searchString,cb) =>{
-  try {
-    examsModel.find({ $text: { $search: searchString } })
-    .exec((err, doc) => {
-      if (err) {
-        cb(err);
-        console.log(err);
-      } else {
-        cb(null, doc);
-      }
-    })
-  } catch (e) {
-    console.log(e);
-    cb(e);
+var getAllExamsOfPhy = (cb) => {
+examsModel.find({subject:"phy"},{name: 1,_id: 0, level:1})
+.exec((err,doc) => {
+  if(err){
+    cb(err);
+    console.log('err');
+  }else{
+    cb(null,doc);
+    console.log('ok');
   }
+})
 }
 
-var searchExamsByYear = (searchString,cb) =>{
-  try {
-    examsModel.find({'year': searchString})
-    .exec((err, doc) => {
-      if (err) {
-        cb(err);
-        console.log(err);
-      } else {
-        cb(null, doc);
-      }
-    })
-  } catch (e) {
-    console.log(e);
-    cb(e);
+var getAllExamsOfChem = (cb) => {
+examsModel.find({subject:"chemistry"},{name: 1,_id: 0, level:1})
+.exec((err,doc) => {
+  if(err){
+    cb(err);
+    console.log('err');
+  }else{
+    cb(null,doc);
+    console.log('ok');
   }
+})
 }
 
-var searchExamsByLevel = (searchString,cb) =>{
-  try {
-    examsModel.find({'level': searchString})
-    .exec((err, doc) => {
-      if (err) {
-        cb(err);
-        console.log(err);
-      } else {
-        cb(null, doc);
-      }
-    })
-  } catch (e) {
-    console.log(e);
-    cb(e);
+var getAllExamsOfBio = (cb) => {
+examsModel.find({subject:"bio"},{name: 1,_id: 0, level:1})
+.exec((err,doc) => {
+  if(err){
+    cb(err);
+    console.log('err');
+  }else{
+    cb(null,doc);
+    console.log('ok');
   }
+})
 }
 
-var updateExamsById = (id,data,cb) => {
-  examsModel.count({'id':id},(err,count) => {
-    if(count==0){
-      console.log('khong tim thay id');
-      return cb('khong thay id')
-    }else {
-      examsModel.update({'id':id},data,(err,doc) =>{
-        if(err){
-          console.log(err);
-          cb(err);
-        }else{
-          console.log('ok');
-          cb(null,err);
-        }
-      });
-    }
-  })
+var getAllExamsOfEng = (cb) => {
+examsModel.find({subject:"eng"},{name: 1,_id: 0, level:1})
+.exec((err,doc) => {
+  if(err){
+    cb(err);
+    console.log('err');
+  }else{
+    cb(null,doc);
+    console.log('ok');
+  }
+})
 }
 
-var deleteExamsById = (id,cb) => {
-  examsModel.count({'id':id},(err,count) => {
-    if(count==0){
-      console.log('khong tim thay id');
-      return cb('khong thay id')
-    }else {
-      examsModel.remove({'id':id},(err,doc) =>{
-        if(err){
-          console.log(err);
-          cb(err);
-        }else{
-          console.log('ok');
-          cb(null,err);
-        }
-      });
-    }
-  })
-}
+
 
 module.exports= {
   saveExam,
-  getAllExams,
-  searchExamsBySchool,
-  searchExamsByYear,
-  searchExamsByLevel,
-  updateExamsById,
-  deleteExamsById
+  getAllExamsOfMath,
+  getAllExamsOfPhy,
+  getAllExamsOfChem,
+  getAllExamsOfBio,
+  getAllExamsOfEng
 }

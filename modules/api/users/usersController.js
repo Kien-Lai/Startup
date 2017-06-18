@@ -39,40 +39,8 @@ var createUser = (data, callback) => {
     })
 }
 
-var getUserByUsername = (username, callback) => {
-  try {
-    usersModel.findOne({username : username}).exec((err,doc) => {
-      if(err){
-        console.log(err);
-      }else{
-        return callback(null,doc);
-      }
-    })
-
-  } catch (e) {
-    console.log(e);
-    callback(e);
-  }
-}
-
-var searchUserByUsernameAndEmail = (searchString, callback) => {
-  try {
-    usersModel.find({ $text: { $search: searchString } }).exec((err, doc) => {
-      if (err) {
-        callback(err);
-      } else {
-        callback(null, doc);
-      }
-    })
-  } catch (e) {
-    console.log(e);
-    callback(e);
-  }
-}
 
 module.exports = {
-  createUser,
-  searchUserByUsernameAndEmail,
-  getUserByUsername,
-  findUserByEmail
+  findUserByEmail,
+  createUser
 }
