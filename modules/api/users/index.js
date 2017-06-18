@@ -101,30 +101,9 @@ Router.get('/', (req,res) => {
 })
 
 Router.route('/login')
-.get((req,res) => {
-  res.sendFile(__dirname + '/login.html');
-})
 .post(Passport.authenticate('local', {failureRedirect: '/',
-                                      successRedirect: '/home/math'}))
-
-Router.get('/loginOk', (req,res) => {
-  examsController.getAllExams((err, data)=>{
-    if(err){
-      res.send(err);
-    }else{
-      //var examsOrigin= JSON.parse(data);
-      // var exams;
-      // examsOrigin.forEach((element)=>{
-      //   exams.push(element);
-      // })
-      console.log(data);
-      res.render('home',{user: req.user, exams: data});
-    }
-  })
-  //res.render('home',{user: req.user});
-
-})
-
+                                      successRedirect: '/home/math'}));
+                                      
  // test da login hay chua
 Router.get('/private', (req,res) => {
   if(req.isAuthenticated()){

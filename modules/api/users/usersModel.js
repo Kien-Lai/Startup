@@ -15,7 +15,7 @@
         },
         message : '{VALUE} is not valid email',
     } },
-    avatar : { type : String , default : ''},
+    avatar : { type : String , default : '../images/default-avatar.png'},
     createdDate :  { type : Date, default : new Date().toISOString() },
     updatedDate :  { type : Date, default : new Date().toISOString() },
     // profile : { type : ObjectId, ref : 'profiles', default : null},
