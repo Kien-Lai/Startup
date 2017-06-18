@@ -39,8 +39,25 @@ var createUser = (data, callback) => {
     })
 }
 
+var getUserByUsername = (username, callback) => {
+  try {
+    usersModel.findOne({username : username}).exec((err,doc) => {
+      if(err){
+        console.log(err);
+      }else{
+        return callback(null,doc);
+      }
+    })
+
+  } catch (e) {
+    console.log(e);
+    callback(e);
+  }
+}
+
 
 module.exports = {
   findUserByEmail,
-  createUser
+  createUser,
+  getUserByUsername
 }
