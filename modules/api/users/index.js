@@ -54,9 +54,7 @@ Passport.use(new LocalStrategy(
           }
         })
       }else{
-
-        console.log('user not found');
-        return done(null,false,{message: 'user khong thấy'});
+        return done(null,false);
       }
     })
   }
@@ -146,5 +144,6 @@ Router.get('/search', (req, res) => {
     }
   })
 })
+
 
 module.exports = Router;

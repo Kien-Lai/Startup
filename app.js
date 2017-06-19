@@ -47,24 +47,20 @@ app.use('/api/exams', examsRouter);
 app.use('/api/users', usersRouter);
 
 app.get('/',middleware.isGuest, (req, res) => {
-
-    // if(req.flash().error === undefined ) {
-    //
-    // }else {
-
-    // }
-
-    res.render('index',{message: req.flash().error});
+  res.render('index',{message: req.flash().error});
 });
-
 
 app.get('/home/math',middleware.confirmLogin,(req,res) => {
   examsController.getAllExamsOfMath((err, data)=>{
     if(err){
       res.send(err);
     }else{
-
-      res.render('home',{user: req.user, exams: data, subject: 'math',message:req.flash().success});
+      usersController.rankingUser((er,doc) =>{
+        if(err) res.send(err);
+        else{
+          res.render('home',{user: req.user, exams: data, subject: 'math',message:req.flash().success,top10:doc});
+        }
+      })
     }
   })
 });

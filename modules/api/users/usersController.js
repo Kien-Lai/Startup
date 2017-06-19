@@ -2,10 +2,52 @@ const mongoose = require('mongoose');
 
 const usersModel = require('./usersModel');
 
+
 var findUserByEmail = (data,cb)=> {
   usersModel.findOne({email:data}, (err,doc) => {
     if(err) return cb(err);
     else return cb(null,doc);
+  })
+}
+
+var rankingUser = (cb) => {
+  usersModel.find({})
+  .sort({point:-1})
+  .exec((err,doc) => {
+    if(err){
+      console.log(err);
+      return cb(err);
+    }else{
+      var topTen = [];
+      var i=0;
+      var j=1;
+      doc.forEach((user) => {
+        updateById(j,user.id,(err,doc)=>{
+          if(err) console.log(err);
+          else console.log('ranked');
+        } );
+        j++;
+      })
+      while (i<10) {
+        topTen.push(doc[i]);
+        i++;
+      }
+      return cb(null,topTen);
+    }
+  })
+}
+
+var updateById= (data,id,cb) => {
+  usersModel.update(
+    {id:id},
+    {rank: data}
+  ).exec((err,doc) => {
+    if(err){
+      console.log(err);
+      cb(err)
+    }else{
+      cb(null,doc);
+    }
   })
 }
 
@@ -48,7 +90,6 @@ var getUserByUsername = (username, callback) => {
         return callback(null,doc);
       }
     })
-
   } catch (e) {
     console.log(e);
     callback(e);
@@ -59,5 +100,7 @@ var getUserByUsername = (username, callback) => {
 module.exports = {
   findUserByEmail,
   createUser,
-  getUserByUsername
+  getUserByUsername,
+  rankingUser,
+  updateById
 }
