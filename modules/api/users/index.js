@@ -54,8 +54,9 @@ Passport.use(new LocalStrategy(
           }
         })
       }else{
+
         console.log('user not found');
-        return done(null,false);
+        return done(null,false,{message: 'user khong thấy'});
       }
     })
   }
@@ -67,14 +68,9 @@ Passport.serializeUser((user, done) => {
   done(null,user.email);
 })
 
-Router.get('/getEmail', (req,res) => {
-  res.send(req.session);
-  console.log(req.session.passport.user);
-})
-
 //so sanh email o session voi trong db
-Passport.deserializeUser((email,done) => {
-  usersController.findUserByEmail(email,(err,data) => {
+Passport.deserializeUser((user,done) => {
+  usersController.findUserByEmail(user,(err,data) => {
     if(err){
       console.log(err);
       return(null,false);
@@ -93,7 +89,8 @@ Router.get('/auth/fb',Passport.authenticate('facebook', {scope: ['email']}));
 
 Router.get('/aufb/cb', Passport.authenticate('facebook', {
   failureRedirect: '/',
-  successRedirect: '/home/math'
+  successRedirect: '/home/math',
+  successFlash: 'Bạn đã đăng nhập thành công'
 }))
 
 Router.get('/', (req,res) => {
@@ -102,8 +99,10 @@ Router.get('/', (req,res) => {
 
 Router.route('/login')
 .post(Passport.authenticate('local', {failureRedirect: '/',
-                                      successRedirect: '/home/math'}));
-                                      
+                                      successRedirect: '/home/math',
+                                      failureFlash: 'Đăng nhập không thành công',
+                                      successFlash: 'Bạn đã đăng nhập thành công'}));
+
  // test da login hay chua
 Router.get('/private', (req,res) => {
   if(req.isAuthenticated()){

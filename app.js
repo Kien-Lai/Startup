@@ -16,17 +16,19 @@ const usersController = require('./modules/api/users/usersController');
 const examsController = require('./modules/api/exams/examsController');
 const middleware= require('./modules/api/middleware/middleware.js');
 const app = express();
+const flash = require('connect-flash');
 
 app.use(session({
   secret: "khang",
   cookie: {
     maxAge : 1000*60*5*1000 //khoang thoi gian luu cookie
-  }
+    }
   }))
 
 app.use(Passport.initialize());
 app.use(Passport.session());
 app.use(express.static(__dirname + '/public'));
+app.use(flash());
 
 // Set up handlebars engine
 app.engine('hbs', hbs({
@@ -45,7 +47,14 @@ app.use('/api/exams', examsRouter);
 app.use('/api/users', usersRouter);
 
 app.get('/',middleware.isGuest, (req, res) => {
-  res.render('index');
+
+    // if(req.flash().error === undefined ) {
+    //
+    // }else {
+
+    // }
+
+    res.render('index',{message: req.flash().error});
 });
 
 
@@ -54,8 +63,8 @@ app.get('/home/math',middleware.confirmLogin,(req,res) => {
     if(err){
       res.send(err);
     }else{
-      console.log(data);
-      res.render('home',{user: req.user, exams: data, subject: 'math'});
+
+      res.render('home',{user: req.user, exams: data, subject: 'math',message:req.flash().success});
     }
   })
 });
