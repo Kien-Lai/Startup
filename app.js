@@ -111,7 +111,7 @@ app.get('/home/eng',middleware.confirmLogin,(req,res) => {
   })
 });
 
-app.get('/exam', (req,res)=>{
+app.get('/exam',middleware.confirmLogin, (req,res)=>{
   res.render('exam',{nameOfExam:req.query.nameOfExam});
 })
 
@@ -167,14 +167,40 @@ app.post('/result', (req,res)=>{
   answers.push(req.body.q48);
   answers.push(req.body.q49);
   answers.push(req.body.q50);
-  examsController.compareAnswer(answers,2,(err,doc) => {
+  examsController.compareAnswer(answers,req.body.nameOfExam,(err,doc) => {
     if(err){
-      console.log(req.body.nameOfExam);
       console.log(err);
     }else{
       console.log(req.body.nameOfExam);
-      res.send(doc);
-    }
+      var factor;
+      examsController.getExamByName(req.body.nameOfExam,(err,exam) => {
+        if(err){
+          res.send('Something error');
+        }else{
+          if(exam.level == 'easy'){ //hệ số mức điểm cho đề thi
+            factor = 1;
+          }if(exam.level == 'medium'){
+            factor = 1.5;
+          }else{
+            factor = 2;
+          }
+          var data = {
+            answersUser : answers, // đáp án người dùng nhập
+            numberOfTrueAnswer : doc.numberOfTrueAnswer, //số đáp án đúng
+            arrayAnswer : doc.arrayAnswer, //mảng gồm những câu đúng và sai
+            nowPoint: req.user.point, // poit hiện tại của user
+            score:  Math.round(doc.numberOfTrueAnswer*0.2*1000)/1000, //điểm bài thi
+            bonusPoint : Math.round(factor*doc.numberOfTrueAnswer*0.2*1000)/1000, //điểm cộng thêm
+            newPoint : Math.round((factor*doc.numberOfTrueAnswer*0.2 + req.user.point)*1000)/1000 //poit cuois cùng
+          }
+          res.send(data);
+          usersController.updatePoint(req.user.username,data.newPoint,(err,doc) => {
+            if(err) res.send('đã xảy ra lỗi');
+            else console.log('ok');
+          })
+        }
+      })
+      }
   })
 })
 

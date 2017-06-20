@@ -95,11 +95,24 @@ var getUserByUsername = (username, callback) => {
   }
 }
 
+var updatePoint = (username,newPoint,cb) => {
+  usersModel.update({username},
+  {point:newPoint})
+  .exec((err,doc) => {
+    if(err){
+      console.log(err);
+      return cb(err);
+    }else{
+      return cb(null,doc);
+    }
+  })
+}
 
 module.exports = {
   findUserByEmail,
   createUser,
   getUserByUsername,
   rankingUser,
-  updateById
+  updateById,
+  updatePoint
 }
