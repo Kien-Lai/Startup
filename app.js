@@ -111,6 +111,15 @@ app.get('/home/Eng',middleware.confirmLogin,(req,res) => {
   })
 });
 
+app.get('/exam', (req,res)=>{
+  res.render('exam');
+})
+
+app.post('/testexam', (req,res)=>{
+  console.log('aaa');
+  res.send(req.body.q1);
+})
+
 mongoose.connect(config.connectionString, (err) => {
   if (err) {
     console.log(err);
