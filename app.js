@@ -73,7 +73,7 @@ app.get('/home/phy',middleware.confirmLogin,(req,res) => {
       res.send(err);
     }else{
       console.log(data);
-      res.render('home',{user: req.user, exams: data, subject: 'math'});
+      res.render('home',{user: req.user, exams: data, subject: 'phy'});
     }
   })
 });
@@ -84,7 +84,7 @@ app.get('/home/chem',middleware.confirmLogin,(req,res) => {
       res.send(err);
     }else{
       console.log(data);
-      res.render('home',{user: req.user, exams: data, subject: 'math'});
+      res.render('home',{user: req.user, exams: data, subject: 'chem'});
     }
   })
 });
@@ -95,18 +95,18 @@ app.get('/home/bio',middleware.confirmLogin,(req,res) => {
       res.send(err);
     }else{
       console.log(data);
-      res.render('home',{user: req.user, exams: data, subject: 'math'});
+      res.render('home',{user: req.user, exams: data, subject: 'bio'});
     }
   })
 });
 
-app.get('/home/Eng',middleware.confirmLogin,(req,res) => {
+app.get('/home/eng',middleware.confirmLogin,(req,res) => {
   examsController.getAllExamsOfEng((err, data)=>{
     if(err){
       res.send(err);
     }else{
       console.log(data);
-      res.render('home',{user: req.user, exams: data, subject: 'math'});
+      res.render('home',{user: req.user, exams: data, subject: 'eng'});
     }
   })
 });
@@ -116,8 +116,19 @@ app.get('/exam', (req,res)=>{
 })
 
 app.post('/testexam', (req,res)=>{
-  console.log('aaa');
-  res.send(req.body.q3);
+  var answers = [];
+  answers.push(req.body.q1);
+  answers.push(req.body.q2);
+  answers.push(req.body.q3);
+  answers.push(req.body.q4);
+  answers.push(req.body.q5);
+  examsController.compareAnswer(answers,2,(err,doc) => {
+    if(err){
+      console.log(err);
+    }else{
+      res.send(doc);
+    }
+  })
 })
 
 mongoose.connect(config.connectionString, (err) => {

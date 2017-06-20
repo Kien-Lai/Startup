@@ -28,7 +28,7 @@
       <div class="col s2 l2" >
         <div id="menu-vertical" class="teal lighten-2">
           <ul>
-            <li><a href="#">Toán</a></li>
+            <li><a href="#" >Toán</a></li>
             <li><a href="#">Lý</a></li>
             <li><a href="#">Hoá</a></li>
             <li><a href="#">Sinh</a></li>
@@ -53,22 +53,14 @@
 
               <h6><i class="fa fa-star yellow-text fa-1x" aria-hidden="true"></i> Dễ</h6>
               <ul class="collapsible" data-collapsible="accordion">
-                <li>
-                  <div class="collapsible-header"><i class="fa fa-angle-double-right" aria-hidden="true"></i>De 01</div>
-                    <div class="collapsible-body"><div>Lorem ipsum dolor sit amet.<i class="fa fa-eye right" aria-hidden="true"></i></div>
-                    <div class="center">
-                      <a class="waves-effect waves-light btn">Lam de</a>
-                    </div>
-                  </div>
-                </li>
                 {{#each exams}}
                   {{#compare this.level "==" "easy"}}
                     <li>
                       <div class="collapsible-header"><i class="fa fa-angle-double-right" aria-hidden="true"></i>{{this.name}}</div>
                       <div class="collapsible-body">
-                        <div>Lorem ipsum dolor sit amet.<i class="fa fa-eye right" aria-hidden="true"></i></div>
+                        <div>Facebook is an American for-profit corporation and an online social media and social networking service based in Menlo Park, California. The Facebook website was launched on February 4, 2004, by Mark Zuckerberg, along with fellow Harvard College students and roommates, Eduardo Saverin, Andrew McCollum, Dustin Moskovitz, and Chris Hughes.<i class="fa fa-eye right" aria-hidden="true"></i></div>
                         <div class="center">
-                          <a class="waves-effect waves-light btn">Lam de</a>
+                          <a class="waves-effect waves-light btn" href="/exam/?nameOfExam={{this.name}}">Làm đề</a>
                         </div>
                       </div>
                     </li>
@@ -85,9 +77,9 @@
                         <li>
                           <div class="collapsible-header"><i class="fa fa-angle-double-right" aria-hidden="true"></i>{{this.name}}</div>
                           <div class="collapsible-body">
-                            <div>Lorem ipsum dolor sit amet.<i class="fa fa-eye right" aria-hidden="true"></i></div>
+                            <div>Facebook is an American for-profit corporation and an online social media and social networking service based in Menlo Park, California. The Facebook website was launched on February 4, 2004, by Mark Zuckerberg, along with fellow Harvard College students and roommates, Eduardo Saverin, Andrew McCollum, Dustin Moskovitz, and Chris Hughes.<i class="fa fa-eye right" aria-hidden="true"></i></div>
                             <div class="center">
-                              <a class="waves-effect waves-light btn">Lam de</a>
+                              <a class="waves-effect waves-light btn" href="/exam/?nameOfExam={{this.name}}">Làm đề</a>
                             </div>
                           </div>
                         </li>
@@ -105,9 +97,9 @@
                       <li>
                         <div class="collapsible-header"><i class="fa fa-angle-double-right" aria-hidden="true"></i>{{this.name}}</div>
                         <div class="collapsible-body">
-                          <div>Lorem ipsum dolor sit amet.<i class="fa fa-eye right" aria-hidden="true"></i></div>
+                          <div>Facebook is an American for-profit corporation and an online social media and social networking service based in Menlo Park, California. The Facebook website was launched on February 4, 2004, by Mark Zuckerberg, along with fellow Harvard College students and roommates, Eduardo Saverin, Andrew McCollum, Dustin Moskovitz, and Chris Hughes.<i class="fa fa-eye right" aria-hidden="true"></i></div>
                           <div class="center">
-                            <a class="waves-effect waves-light btn">Lam de</a>
+                            <a class="waves-effect waves-light btn" href="/exam/?nameOfExam={{this.name}}">Làm đề</a>
                           </div>
                         </div>
                       </li>

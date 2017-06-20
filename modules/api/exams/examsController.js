@@ -94,7 +94,33 @@ examsModel.find({subject:"eng"},{name: 1,_id: 0, level:1})
 })
 }
 
-
+var compareAnswer = (answerUser,examId,cb) => {
+  examsModel.findOne({id: examId})
+  .exec((err,doc) => {
+    if(err) {
+      console.log(err);
+      cb(err);
+    }else{
+      let i = 0;
+      let a=0; //số đáp án đúng
+      var rightAnswer = []; //các đáp án đúng
+      doc.answers.forEach((an) => {
+        if(an == answerUser[i]) {
+          rightAnswer.push(an);
+          a++;
+        }else {
+          rightAnswer.push('sai');
+        }
+        i++;
+      })
+      var data = {
+        numberOfRightAnswer : a,
+        rightAnswer : rightAnswer
+      }
+      return cb(null,data);
+    }
+  })
+}
 
 module.exports= {
   saveExam,
@@ -102,5 +128,6 @@ module.exports= {
   getAllExamsOfPhy,
   getAllExamsOfChem,
   getAllExamsOfBio,
-  getAllExamsOfEng
+  getAllExamsOfEng,
+  compareAnswer
 }
