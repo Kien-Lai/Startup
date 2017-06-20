@@ -117,7 +117,7 @@ app.get('/exam', (req,res)=>{
 
 app.post('/testexam', (req,res)=>{
   console.log('aaa');
-  res.send(req.body.q1);
+  res.send(req.body.q3);
 })
 
 mongoose.connect(config.connectionString, (err) => {
