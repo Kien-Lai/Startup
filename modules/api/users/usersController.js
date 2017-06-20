@@ -24,8 +24,7 @@ var rankingUser = (cb) => {
       doc.forEach((user) => {
         updateById(j,user.id,(err,doc)=>{
           if(err) console.log(err);
-          else console.log('ranked');
-        } );
+          } );
         j++;
       })
       while (i<10) {

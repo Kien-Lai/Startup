@@ -106,10 +106,10 @@ var compareAnswer = (answerUser,examId,cb) => {
       var rightAnswer = []; //các đáp án đúng
       doc.answers.forEach((an) => {
         if(an == answerUser[i]) {
-          rightAnswer.push(an);
+          rightAnswer.push('True');
           a++;
         }else {
-          rightAnswer.push('sai');
+          rightAnswer.push('False');
         }
         i++;
       })

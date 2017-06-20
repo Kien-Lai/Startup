@@ -75,7 +75,6 @@ Passport.deserializeUser((user,done) => {
     }else{
       if (data) {
         return done(null,data);
-        console.log('h');
       }else {
         return done(null,false);
       }
@@ -139,7 +138,6 @@ Router.get('/search', (req, res) => {
   usersController.searchUserByUsernameAndEmail(req.query.searchString, (err, doc) => {
     if (err) {
       console.log(err);
-      res.send('co loi');
     }else{
       res.send(doc);
     }
