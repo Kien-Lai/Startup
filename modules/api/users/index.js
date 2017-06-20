@@ -121,7 +121,7 @@ Router.post('/signup', (req, res) => {
   usersController.createUser(newUser, (err, doc) => {
     if (err) {
       console.log(err);
-      res.send('Co loi');
+      res.redirect('/?message=' + err);
     } else {
       res.redirect('/home/math');
     }
