@@ -94,8 +94,8 @@ examsModel.find({subject:"eng"},{name: 1,_id: 0, level:1})
 })
 }
 
-var compareAnswer = (answerUser,examId,cb) => {
-  examsModel.findOne({id: examId})
+var compareAnswer = (answerUser,examName,cb) => {
+  examsModel.findOne({name: examName})
   .exec((err,doc) => {
     if(err) {
       console.log(err);
@@ -103,24 +103,36 @@ var compareAnswer = (answerUser,examId,cb) => {
     }else{
       let i = 0;
       let a=0; //số đáp án đúng
-      var rightAnswer = []; //các đáp án đúng
-      doc.answers.forEach((an) => {
-        if(an == answerUser[i]) {
-          rightAnswer.push('True');
+      var arrayAnswer = []; //các đáp án đúng
+      doc.answers.forEach((trueAnswer) => {
+        if(trueAnswer == answerUser[i]) {
+          arrayAnswer.push('True');
           a++;
         }else {
-          rightAnswer.push('False');
+          arrayAnswer.push(trueAnswer);
         }
         i++;
       })
       var data = {
-        numberOfRightAnswer : a,
-        rightAnswer : rightAnswer
+        numberOfTrueAnswer : a,
+        arrayAnswer : arrayAnswer
       }
       return cb(null,data);
     }
   })
 }
+
+  var getExamByName= (examName,cb) =>{
+    examsModel.findOne({name:examName})
+    .exec((err,doc) => {
+      if(err){
+        console.log(err);
+        return cb(err);
+      }else{
+        return cb(null,doc);
+      }
+    })
+  }
 
 module.exports= {
   saveExam,
@@ -129,5 +141,6 @@ module.exports= {
   getAllExamsOfChem,
   getAllExamsOfBio,
   getAllExamsOfEng,
-  compareAnswer
+  compareAnswer,
+  getExamByName
 }
