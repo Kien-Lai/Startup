@@ -47,7 +47,9 @@ app.use('/api/exams', examsRouter);
 app.use('/api/users', usersRouter);
 
 app.get('/',middleware.isGuest, (req, res) => {
-  res.render('index',{message: req.flash().error});
+  var getMs = req.query.message;
+  var SuccessSignup = req.query.SuccessSignup;
+  res.render('index',{LoginMessage: req.flash().error,SignupMessage:getMs,SuccessSignup:SuccessSignup});
 });
 
 app.get('/home/math',middleware.confirmLogin,(req,res) => {

@@ -1,5 +1,5 @@
-<h1>{{message}}</h1>
-
+<h1>{{LoginMessage}}</h1>
+<h2>{{SignupMessage}}</h2>
 <div class="parallax-container " id="index-banner ">
     <div class="section ">
       <div class="container ">
@@ -59,3 +59,18 @@
       <img src="../images/index-picture-of-team.jpg " alt=" ">
     </div>
   </div>
+
+<script type="text/javascript">
+  var LoginMessage= '{{LoginMessage}}';
+  var SignupMessage='{{SignupMessage}}';
+  var SuccessSignup= '{{SuccessSignup}}';
+  if(LoginMessage){
+    alert(LoginMessage);
+  }
+  if(SignupMessage){
+    alert(SignupMessage);
+  }
+  if(SuccessSignup){
+    alert(SuccessSignup);
+  }
+</script>

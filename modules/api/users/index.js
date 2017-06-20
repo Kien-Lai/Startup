@@ -121,9 +121,10 @@ Router.post('/signup', (req, res) => {
   usersController.createUser(newUser, (err, doc) => {
     if (err) {
       console.log(err);
-      res.send('Co loi');
+      res.redirect('/?message=' + err);
     } else {
-      res.redirect('/home/math');
+      var sc = "Bạn đã tạo tài khoản thành công,mời bạn đăng nhập lại";
+      res.redirect('/?SuccessSignup=' + sc );
     }
   })
 });
