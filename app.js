@@ -112,20 +112,67 @@ app.get('/home/eng',middleware.confirmLogin,(req,res) => {
 });
 
 app.get('/exam', (req,res)=>{
-  res.render('exam');
+  res.render('exam',{nameOfExam:req.query.nameOfExam});
 })
 
-app.post('/testexam', (req,res)=>{
+app.post('/result', (req,res)=>{
   var answers = [];
   answers.push(req.body.q1);
   answers.push(req.body.q2);
   answers.push(req.body.q3);
   answers.push(req.body.q4);
   answers.push(req.body.q5);
+  answers.push(req.body.q6);
+  answers.push(req.body.q7);
+  answers.push(req.body.q8);
+  answers.push(req.body.q9);
+  answers.push(req.body.q10);
+  answers.push(req.body.q11);
+  answers.push(req.body.q12);
+  answers.push(req.body.q13);
+  answers.push(req.body.q14);
+  answers.push(req.body.q15);
+  answers.push(req.body.q16);
+  answers.push(req.body.q17);
+  answers.push(req.body.q18);
+  answers.push(req.body.q19);
+  answers.push(req.body.q20);
+  answers.push(req.body.q21);
+  answers.push(req.body.q22);
+  answers.push(req.body.q23);
+  answers.push(req.body.q24);
+  answers.push(req.body.q25);
+  answers.push(req.body.q26);
+  answers.push(req.body.q27);
+  answers.push(req.body.q28);
+  answers.push(req.body.q29);
+  answers.push(req.body.q30);
+  answers.push(req.body.q31);
+  answers.push(req.body.q32);
+  answers.push(req.body.q33);
+  answers.push(req.body.q34);
+  answers.push(req.body.q35);
+  answers.push(req.body.q36);
+  answers.push(req.body.q37);
+  answers.push(req.body.q38);
+  answers.push(req.body.q39);
+  answers.push(req.body.q40);
+  answers.push(req.body.q41);
+  answers.push(req.body.q42);
+  answers.push(req.body.q43);
+  answers.push(req.body.q44);
+  answers.push(req.body.q45);
+  answers.push(req.body.q46);
+  answers.push(req.body.q47);
+  answers.push(req.body.q48);
+  answers.push(req.body.q49);
+  answers.push(req.body.q50);
   examsController.compareAnswer(answers,2,(err,doc) => {
     if(err){
+      console.log(req.body.nameOfExam);
       console.log(err);
     }else{
+      console.log(req.body.nameOfExam);
       res.send(doc);
     }
   })
