@@ -59,7 +59,7 @@ app.get('/home/math',middleware.confirmLogin,(req,res) => {
     if(err){
       res.send(err);
     }else{
-      usersController.rankingUser((er,doc) =>{
+      usersController.rankingUser((err,doc) =>{
         if(err) res.send(err);
         else{
           res.render('home',{user: req.user, exams: data, subject: 'math',message:req.flash().success,top10:doc});
@@ -117,7 +117,7 @@ app.get('/exam',middleware.confirmLogin, (req,res)=>{
   res.render('exam',{nameOfExam:req.query.nameOfExam});
 })
 
-app.post('/result', (req,res)=>{
+app.post('/result',middleware.confirmLogin, (req,res)=>{
   const oldrank = req.user.rank; //rank cu cua user
   var answers = [];
   answers.push(req.body.q1);
@@ -196,17 +196,22 @@ app.post('/result', (req,res)=>{
             if(err){
               console.log(err);
             }else{
-              if(history == '[]'){
+              if(history == null){
+                console.log('da chay vao day');
                 var newPoint = Math.round((factor*doc.numberOfTrueAnswer*0.2 + req.user.point)*1000)/1000; //new point
                 //update poit cho user
                 usersController.updatePoint(req.user.username,newPoint,(err,doc) => {
                   if(err) res.send('đã xảy ra lỗi');
-                  else console.log('ok');
+                  else {
+                    console.log('updated point');
+                  }
                 })
                 //update rank
-                usersController.rankingUser((err,ok) => {
-                  if(err) console.log(err);
-                  else console.log('ranked');
+                usersController.rankingUser((er,doc) => {
+                  if(er) console.log(er);
+                  else {
+                    console.log(req.user.rank);
+                  }
                 })
                 var data = {
                   answersUser : answers, // đáp án người dùng nhập
@@ -215,8 +220,9 @@ app.post('/result', (req,res)=>{
                   nowPoint: req.user.point, // poit hiện tại của user
                   score:  Math.round(doc.numberOfTrueAnswer*0.2*1000)/1000, //điểm bài thi
                   oldrank : oldrank,
-                  bonusPoint: Math.round(doc.numberOfTrueAnswer*0.2*1000*factor)/10000,
-                  newRank: req.user.rank
+                  bonusPoint: Math.round(doc.numberOfTrueAnswer*0.2*1000*factor)/1000,
+                  newRank: req.user.rank,
+                  newPoint: req.user.point + Math.round(doc.numberOfTrueAnswer*0.2*1000*factor)/1000
                 }
                 var historyData = {
                   idExam : exam.id,
@@ -232,6 +238,7 @@ app.post('/result', (req,res)=>{
                 res.send(data);
 
               }else{
+                console.log('da chay vao history');
                 var coreData = {
                   answersUser : answers, // đáp án người dùng nhập
                   numberOfTrueAnswer : doc.numberOfTrueAnswer, //số đáp án đúng
@@ -247,8 +254,7 @@ app.post('/result', (req,res)=>{
                 historyController.addHistory(coreHistory,(err,done)=>{
                   if(err) console.log(err);
                   else {
-                    console.log('da cap nhat bai thi ko phai lan dau');
-                    console.log(history);
+                    res.send(coreData);
                   }
                 })
               }
@@ -266,6 +272,7 @@ app.get('/history',middleware.confirmLogin,(req,res) => {
     else res.send(doc);
   })
 })
+
 
 mongoose.connect(config.connectionString, (err) => {
   if (err) {

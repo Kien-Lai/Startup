@@ -12,7 +12,7 @@ var addHistory = (data,cb) => {
 }
 
 var showHistory= (id,cb) =>{
-  historyModel.findOne({userIdCreated: id})
+  historyModel.find({userIdCreated: id})
   .exec((err,doc) => {
     if(err){
       console.log(err);
@@ -25,7 +25,7 @@ var showHistory= (id,cb) =>{
 }
 
 var getHistoryByExamId= (idExam,idUser,cb) => {
-  historyModel.find({idExam: idExam,userIdCreated: idUser})
+  historyModel.findOne({idExam: idExam,userIdCreated: idUser})
   .exec((err,doc) => {
     if(err){
       console.log(err);
