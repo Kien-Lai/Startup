@@ -91,6 +91,17 @@ menu-holizontal{
   max-height: 85%;
 }
 
-.login-button{
-  max-width: 300%;
+#login-button{
+  width: 250px;
+  border-radius: 5px;
+}
+
+#login-fb-button{
+  width: 250px;
+  border-radius: 5px;
+}
+
+#signup-button{
+  width: 250px;
+  border-radius: 5px;
 }
