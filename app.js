@@ -200,42 +200,43 @@ app.post('/result',middleware.confirmLogin, (req,res)=>{
                 console.log('da chay vao day');
                 var newPoint = Math.round((factor*doc.numberOfTrueAnswer*0.2 + req.user.point)*1000)/1000; //new point
                 //update poit cho user
-                usersController.updatePoint(req.user.username,newPoint,(err,doc) => {
+                usersController.updatePoint(req.user.username,newPoint,(err,done) => {
                   if(err) res.send('đã xảy ra lỗi');
                   else {
                     console.log('updated point');
+                    usersController.rankingUser((er,ok) => {
+                      if(er) console.log(er);
+                      else {
+                        console.log('chay vao ranking user roi mà no deoo chay');
+                        var data = {
+                          answersUser : answers, // đáp án người dùng nhập
+                          numberOfTrueAnswer : doc.numberOfTrueAnswer, //số đáp án đúng
+                          arrayAnswer : doc.arrayAnswer, //mảng gồm những câu đúng và sai
+                          nowPoint: req.user.point, // poit hiện tại của user
+                          score:  Math.round(doc.numberOfTrueAnswer*0.2*1000)/1000, //điểm bài thi
+                          oldrank : oldrank,
+                          bonusPoint: Math.round(doc.numberOfTrueAnswer*0.2*1000*factor)/1000,
+                          newRank: req.user.rank,
+                          newPoint: Math.round( req.user.point*1000 + doc.numberOfTrueAnswer*0.2*1000*factor)/1000,
+                          trueAnswer: exam.answers
+                        };
+                        var historyData = {
+                          idExam : exam.id,
+                          numberOfTrueAnswer : doc.numberOfTrueAnswer,
+                          userIdCreated: req.user.id,
+                          rankUpdated: req.user.rank,
+                          bonusPoint: data.bonusPoint
+                        };
+                        historyController.addHistory(historyData,(err,done)=>{
+                          if(err) console.log(err);
+                          else console.log('done');
+                        })
+                        res.send(data);
+                      }
+                    })
                   }
                 })
                 //update rank
-                usersController.rankingUser((er,doc) => {
-                  if(er) console.log(er);
-                  else {
-                    console.log(req.user.rank);
-                  }
-                })
-                var data = {
-                  answersUser : answers, // đáp án người dùng nhập
-                  numberOfTrueAnswer : doc.numberOfTrueAnswer, //số đáp án đúng
-                  arrayAnswer : doc.arrayAnswer, //mảng gồm những câu đúng và sai
-                  nowPoint: req.user.point, // poit hiện tại của user
-                  score:  Math.round(doc.numberOfTrueAnswer*0.2*1000)/1000, //điểm bài thi
-                  oldrank : oldrank,
-                  bonusPoint: Math.round(doc.numberOfTrueAnswer*0.2*1000*factor)/1000,
-                  newRank: req.user.rank,
-                  newPoint: req.user.point + Math.round(doc.numberOfTrueAnswer*0.2*1000*factor)/1000
-                }
-                var historyData = {
-                  idExam : exam.id,
-                  numberOfTrueAnswer : doc.numberOfTrueAnswer,
-                  userIdCreated: req.user.id,
-                  rankUpdated: req.user.rank,
-                  bonusPoint: data.bonusPoint
-                }
-                historyController.addHistory(historyData,(err,done)=>{
-                  if(err) console.log(err);
-                  else console.log('done');
-                })
-                res.send(data);
 
               }else{
                 console.log('da chay vao history');
@@ -245,6 +246,7 @@ app.post('/result',middleware.confirmLogin, (req,res)=>{
                   arrayAnswer : doc.arrayAnswer, //mảng gồm những câu đúng và sai
                   nowPoint: req.user.point, // poit hiện tại của user
                   score:  Math.round(doc.numberOfTrueAnswer*0.2*1000)/1000, //điểm bài thi
+                  trueAnswer: exam.answers
                 }
                 var coreHistory = {
                   idExam : exam.id,
@@ -272,7 +274,6 @@ app.get('/history',middleware.confirmLogin,(req,res) => {
     else res.send(doc);
   })
 })
-
 
 mongoose.connect(config.connectionString, (err) => {
   if (err) {
