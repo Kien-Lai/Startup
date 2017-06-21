@@ -1,5 +1,21 @@
 <link rel="stylesheet" type="text/css" href="../css/home.css">
 
+<script type="text/javascript">
+  var search= function(){
+    var key= $('#key').val();
+    $('#result a').remove();
+    var element = $('.name_of_exam');
+    var value = '';
+    // search
+    for (var i = 0; i <= element.length; i++){
+        value = $(element[i]).text();
+        if(value.includes(key)){
+          $('#result').append('<a class="waves-effect waves-light btn" href="/exam/?nameOfExam='+value+'}">'+value+'</a>')
+        }
+    }
+  }
+</script>
+
 <div class="wrapper-nav">
         <nav class="teal lighten-2 menu-holizontal" id="nav">
         <ul class="left">
@@ -48,6 +64,23 @@
               </blockquote>
             </div>
             <br>
+            <div id="search" class="block_slidedown">
+              <div class="">
+                <i class="fa fa-search" aria-hidden="true">Tìm Kiếm</i>
+                <div class="row">
+                  <div class="col s10 l10">
+                    <input type="text" id="key">
+                  </div>
+                  <div class="col s2 l2">
+                    <div class="btn" onclick="search()">Tìm</div>
+                  </div>
+                </div>
+                <div id="result">
+
+                </div>
+              </div>
+            </div>
+            <br>
             <div id="exams" class="block_slidedown">
               <h6> Danh sách đề thi:</h6>
 
@@ -56,7 +89,7 @@
                 {{#each exams}}
                   {{#compare this.level "==" "easy"}}
                     <li>
-                      <div class="collapsible-header"><i class="fa fa-angle-double-right" aria-hidden="true"></i>{{this.name}}</div>
+                      <div class="collapsible-header name_of_exam"><i class="fa fa-angle-double-right" aria-hidden="true"></i>{{this.name}}</div>
                       <div class="collapsible-body">
                         <div>Facebook is an American for-profit corporation and an online social media and social networking service based in Menlo Park, California. The Facebook website was launched on February 4, 2004, by Mark Zuckerberg, along with fellow Harvard College students and roommates, Eduardo Saverin, Andrew McCollum, Dustin Moskovitz, and Chris Hughes.<i class="fa fa-eye right" aria-hidden="true"></i></div>
                         <div class="center">
@@ -75,7 +108,7 @@
                   {{#each exams}}
                     {{#compare this.level "==" "medium"}}
                         <li>
-                          <div class="collapsible-header"><i class="fa fa-angle-double-right" aria-hidden="true"></i>{{this.name}}</div>
+                          <div class="collapsible-header name_of_exam"><i class="fa fa-angle-double-right" aria-hidden="true"></i>{{this.name}}</div>
                           <div class="collapsible-body">
                             <div>Facebook is an American for-profit corporation and an online social media and social networking service based in Menlo Park, California. The Facebook website was launched on February 4, 2004, by Mark Zuckerberg, along with fellow Harvard College students and roommates, Eduardo Saverin, Andrew McCollum, Dustin Moskovitz, and Chris Hughes.<i class="fa fa-eye right" aria-hidden="true"></i></div>
                             <div class="center">
@@ -95,7 +128,7 @@
                   {{#each exams}}
                     {{#compare this.level "==" "difficult"}}
                       <li>
-                        <div class="collapsible-header"><i class="fa fa-angle-double-right" aria-hidden="true"></i>{{this.name}}</div>
+                        <div class="collapsible-header name_of_exam"><i class="fa fa-angle-double-right" aria-hidden="true"></i>{{this.name}}</div>
                         <div class="collapsible-body">
                           <div>Facebook is an American for-profit corporation and an online social media and social networking service based in Menlo Park, California. The Facebook website was launched on February 4, 2004, by Mark Zuckerberg, along with fellow Harvard College students and roommates, Eduardo Saverin, Andrew McCollum, Dustin Moskovitz, and Chris Hughes.<i class="fa fa-eye right" aria-hidden="true"></i></div>
                           <div class="center">
