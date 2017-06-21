@@ -135,15 +135,15 @@
                 <ul class="collapsible" data-collapsible="accordion">
                   {{#each exams}}
                     {{#compare this.level "==" "difficult"}}
-                      <li>
-                        <div class="collapsible-header name_of_exam"><i class="fa fa-angle-double-right" aria-hidden="true"></i>{{this.name}}<i class="fa fa-eye right" aria-hidden="true"></i></div></div>
-                        <div class="collapsible-body">
-                          <div>Facebook is an American for-profit corporation and an online social media and social networking service based in Menlo Park, California. The Facebook website was launched on February 4, 2004, by Mark Zuckerberg, along with fellow Harvard College students and roommates, Eduardo Saverin, Andrew McCollum, Dustin Moskovitz, and Chris Hughes.
-                          <div class="center">
-                            <a class="waves-effect waves-light btn" href="/exam/?nameOfExam={{this.name}}">Làm đề</a>
-                          </div>
+                    <li>
+                      <div class="collapsible-header name_of_exam"><i class="fa fa-angle-double-right" aria-hidden="true"></i>{{this.name}}<i class="fa fa-eye right" aria-hidden="true"></i></div>
+                      <div class="collapsible-body">
+                        <div>Facebook is an American for-profit corporation and an online social media and social networking service based in Menlo Park, California. The Facebook website was launched on February 4, 2004, by Mark Zuckerberg, along with fellow Harvard College students and roommates, Eduardo Saverin, Andrew McCollum, Dustin Moskovitz, and Chris Hughes.</div>
+                        <div class="center">
+                          <a class="waves-effect waves-light btn" href="/exam/?nameOfExam={{this.name}}">Làm đề</a>
                         </div>
-                      </li>
+                      </div>
+                    </li>
                     {{/compare}}
                   {{/each}}
                 </ul>
