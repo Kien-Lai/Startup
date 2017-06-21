@@ -1,5 +1,5 @@
 <link rel="stylesheet" href="/css/result.css">
-
+<h1>{{answerUser}}</h1>
 <br>
 
 <div class="row">
@@ -16,7 +16,7 @@
     <div id="name_of_exam">
       <div>
         <i class="fa fa-newspaper-o fa-2x" aria-hidden="true"></i>
-        <span>Chuyen Hung Vuong lan 1</span>
+        <span>{{examName}}</span>
       </div>
     </div>
 
@@ -25,7 +25,7 @@
     <div id="point">
       <div>
         <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-        <span>8/10</span>
+        <span>Điểm bài thi: {{score}}</span>
       </div>
     </div>
 
@@ -34,7 +34,7 @@
     <div id="point">
       <div>
         <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-        <span>40/50 questions</span>
+        <span>Số câu trả lời đúng: {{numberOfTrueAnswer}}</span>
       </div>
     </div>
 
@@ -43,7 +43,7 @@
     <div id="point_bonus">
       <div>
         <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-        <span>Bonus: 25</span>
+        <span>Điểm tích luỹ cộng thêm : {{bonusPoint}}</span>
       </div>
     </div>
 
@@ -52,7 +52,7 @@
     <div id="total_point">
       <div>
         <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-        <span>Total point: 125</span>
+        <span>Điểm tích luỹ: {{nowPoint}}</span>
       </div>
     </div>
 
@@ -61,7 +61,7 @@
     <div id="rank">
       <div>
         <i class="fa fa-star fa-2x" aria-hidden="true"></i>
-        <span>Ranking: 13</span>
+        <span>Rank:{{rank}}</span>
       </div>
     </div>
 
@@ -79,55 +79,55 @@
           </tr>
           <tr>
             <td>1</td>
-            <td>A</td>
+            <td>{{trueAnswer.[0]}}</td>
           </tr>
           <tr>
             <td>2</td>
-            <td>A</td>
+            <td>{{trueAnswer.[1]}}</td>
           </tr>
           <tr>
             <td>3</td>
-            <td>A</td>
+            <td>{{trueAnswer.[2]}}</td>
           </tr>
           <tr>
             <td>4</td>
-            <td>A</td>
+            <td>{{trueAnswer.[3]}}</td>
           </tr>
           <tr>
             <td>5</td>
-            <td>A</td>
+            <td>{{trueAnswer.[4]}}</td>
           </tr>
           <tr>
             <td>6</td>
-            <td>A</td>
+            <td>{{trueAnswer.[5]}}</td>
           </tr>
           <tr>
             <td>7</td>
-            <td>A</td>
+            <td>{{trueAnswer.[6]}}</td>
           </tr>
           <tr>
             <td>8</td>
-            <td>A</td>
+            <td>{{trueAnswer.[7]}}</td>
           </tr>
           <tr>
             <td>9</td>
-            <td>A</td>
+            <td>{{trueAnswer.[8]}}</td>
           </tr>
           <tr>
             <td>10</td>
-            <td>A</td>
+            <td>{{trueAnswer.[9]}}</td>
           </tr>
           <tr>
             <td>11</td>
-            <td>A</td>
+            <td>{{trueAnswer.[10]}}</td>
           </tr>
           <tr>
             <td>12</td>
-            <td>A</td>
+            <td>{{trueAnswer.[11]}}</td>
           </tr>
           <tr>
             <td>13</td>
-            <td>A</td>
+            <td>{{trueAnswer.[12]}}</td>
           </tr>
         </table>
       </div>
@@ -139,55 +139,55 @@
           </tr>
           <tr>
             <td>14</td>
-            <td>A</td>
+            <td>{{trueAnswer.[13]}}</td>
           </tr>
           <tr>
             <td>15</td>
-            <td>A</td>
+            <td>{{trueAnswer.[14]}}</td>
           </tr>
           <tr>
             <td>16</td>
-            <td>A</td>
+            <td>{{trueAnswer.[15]}}</td>
           </tr>
           <tr>
             <td>17</td>
-            <td>A</td>
+            <td>{{trueAnswer.[16]}}</td>
           </tr>
           <tr>
             <td>18</td>
-            <td>A</td>
+            <td>{{trueAnswer.[17]}}</td>
           </tr>
           <tr>
             <td>19</td>
-            <td>A</td>
+            <td>{{trueAnswer.[18]}}</td>
           </tr>
           <tr>
             <td>20</td>
-            <td>A</td>
+            <td>{{trueAnswer.[19]}}</td>
           </tr>
           <tr>
             <td>21</td>
-            <td>A</td>
+            <td>{{trueAnswer.[20]}}</td>
           </tr>
           <tr>
             <td>22</td>
-            <td>A</td>
+            <td>{{trueAnswer.[21]}}</td>
           </tr>
           <tr>
             <td>23</td>
-            <td>A</td>
+            <td>{{trueAnswer.[22]}}</td>
           </tr>
           <tr>
             <td>24</td>
-            <td>A</td>
+            <td>{{trueAnswer.[23]}}</td>
           </tr>
           <tr>
             <td>25</td>
-            <td>A</td>
+            <td>{{trueAnswer.[24]}}</td>
           </tr>
           <tr>
             <td>26</td>
-            <td>A</td>
+            <td>{{trueAnswer.[25]}}</td>
           </tr>
         </table>
       </div>
@@ -199,55 +199,55 @@
           </tr>
           <tr>
             <td>27</td>
-            <td>A</td>
+            <td>{{trueAnswer.[26]}}</td>
           </tr>
           <tr>
             <td>28</td>
-            <td>A</td>
+            <td>{{trueAnswer.[27]}}</td>
           </tr>
           <tr>
             <td>29</td>
-            <td>A</td>
+            <td>{{trueAnswer.[28]}}</td>
           </tr>
           <tr>
             <td>30</td>
-            <td>A</td>
+            <td>{{trueAnswer.[29]}}</td>
           </tr>
           <tr>
             <td>31</td>
-            <td>A</td>
+            <td>{{trueAnswer.[30]}}</td>
           </tr>
           <tr>
             <td>32</td>
-            <td>A</td>
+            <td>{{trueAnswer.[31]}}</td>
           </tr>
           <tr>
             <td>33</td>
-            <td>A</td>
+            <td>{{trueAnswer.[32]}}</td>
           </tr>
           <tr>
             <td>34</td>
-            <td>A</td>
+            <td>{{trueAnswer.[33]}}</td>
           </tr>
           <tr>
             <td>35</td>
-            <td>A</td>
+            <td>{{trueAnswer.[34]}}</td>
           </tr>
           <tr>
             <td>36</td>
-            <td>A</td>
+            <td>{{trueAnswer.[35]}}</td>
           </tr>
           <tr>
             <td>37</td>
-            <td>A</td>
+            <td>{{trueAnswer.[36]}}</td>
           </tr>
           <tr>
             <td>38</td>
-            <td>A</td>
+            <td>{{trueAnswer.[37]}}</td>
           </tr>
           <tr>
             <td>39</td>
-            <td>A</td>
+            <td>{{trueAnswer.[38]}}</td>
           </tr>
         </table>
       </div>
@@ -259,55 +259,55 @@
           </tr>
           <tr>
             <td>40</td>
-            <td>A</td>
+            <td>{{trueAnswer.[39]}}</td>
           </tr>
           <tr>
             <td>41</td>
-            <td>A</td>
+            <td>{{trueAnswer.[40]}}</td>
           </tr>
           <tr>
             <td>42</td>
-            <td>A</td>
+            <td>{{trueAnswer.[41]}}</td>
           </tr>
           <tr>
             <td>43</td>
-            <td>A</td>
+            <td>{{trueAnswer.[42]}}</td>
           </tr>
           <tr>
             <td>44</td>
-            <td>A</td>
+            <td>{{trueAnswer.[43]}}</td>
           </tr>
           <tr>
             <td>45</td>
-            <td>A</td>
+            <td>{{trueAnswer.[44]}}</td>
           </tr>
           <tr>
             <td>46</td>
-            <td>A</td>
+            <td>{{trueAnswer.[45]}}</td>
           </tr>
           <tr>
             <td>47</td>
-            <td>A</td>
+            <td>{{trueAnswer.[46]}}</td>
           </tr>
           <tr>
             <td>48</td>
-            <td>A</td>
+            <td>{{trueAnswer.[47]}}</td>
           </tr>
           <tr>
             <td>49</td>
-            <td>A</td>
+            <td>{{trueAnswer.[48]}}</td>
           </tr>
           <tr>
             <td>50</td>
-            <td>A</td>
+            <td>{{trueAnswer.[49]}}</td>
           </tr>
           <tr>
-            <td>50</td>
-            <td>A</td>
+            <td>51</td>
+            <td></td>
           </tr>
           <tr>
-            <td>50</td>
-            <td>A</td>
+            <td>52</td>
+            <td></td>
           </tr>
         </table>
       </div>
@@ -326,55 +326,55 @@
             </tr>
             <tr>
               <td>1</td>
-              <td>A</td>
+              <td>{{answersUser.[0]}}</td>
             </tr>
             <tr>
               <td>2</td>
-              <td>A</td>
+              <td>{{answersUser.[1]}}</td>
             </tr>
             <tr>
               <td>3</td>
-              <td>A</td>
+              <td>{{answersUser.[2]}}</td>
             </tr>
             <tr>
               <td>4</td>
-              <td>A</td>
+              <td>{{answersUser.[3]}}</td>
             </tr>
             <tr>
               <td>5</td>
-              <td>A</td>
+              <td>{{answersUser.[4]}}</td>
             </tr>
             <tr>
               <td>6</td>
-              <td>A</td>
+              <td>{{answersUser.[5]}}</td>
             </tr>
             <tr>
               <td>7</td>
-              <td>A</td>
+              <td>{{answersUser.[6]}}</td>
             </tr>
             <tr>
               <td>8</td>
-              <td>A</td>
+              <td>{{answersUser.[7]}}</td>
             </tr>
             <tr>
               <td>9</td>
-              <td>A</td>
+              <td>{{answersUser.[8]}}</td>
             </tr>
             <tr>
               <td>10</td>
-              <td>A</td>
+              <td>{{answersUser.[9]}}</td>
             </tr>
             <tr>
               <td>11</td>
-              <td>A</td>
+              <td>{{answersUser.[10]}}</td>
             </tr>
             <tr>
               <td>12</td>
-              <td>A</td>
+              <td>{{answersUser.[11]}}</td>
             </tr>
             <tr>
               <td>13</td>
-              <td>A</td>
+              <td>{{answersUser.[12]}}</td>
             </tr>
           </table>
         </div>
@@ -386,55 +386,55 @@
             </tr>
             <tr>
               <td>14</td>
-              <td>A</td>
+              <td>{{answersUser.[13]}}</td>
             </tr>
             <tr>
               <td>15</td>
-              <td>A</td>
+              <td{{answersUser.[14]}}</td>
             </tr>
             <tr>
               <td>16</td>
-              <td>A</td>
+              <td>{{answersUser.[15]}}</td>
             </tr>
             <tr>
               <td>17</td>
-              <td>A</td>
+              <td>{{answersUser.[16]}}</td>
             </tr>
             <tr>
               <td>18</td>
-              <td>A</td>
+              <td>{{answersUser.[17]}}</td>
             </tr>
             <tr>
               <td>19</td>
-              <td>A</td>
+              <td>{{answersUser.[18]}}</td>
             </tr>
             <tr>
               <td>20</td>
-              <td>A</td>
+              <td>{{answersUser.[19]}}</td>
             </tr>
             <tr>
               <td>21</td>
-              <td>A</td>
+              <td>{{answersUser.[20]}}</td>
             </tr>
             <tr>
               <td>22</td>
-              <td>A</td>
+              <td>{{answersUser.[21]}}</td>
             </tr>
             <tr>
               <td>23</td>
-              <td>A</td>
+              <td>{{answersUser.[22]}}</td>
             </tr>
             <tr>
               <td>24</td>
-              <td>A</td>
+              <td>{{answersUser.[23]}}</td>
             </tr>
             <tr>
               <td>25</td>
-              <td>A</td>
+              <td>{{answersUser.[24]}}</td>
             </tr>
             <tr>
               <td>26</td>
-              <td>A</td>
+              <td>{{answersUser.[25]}}</td>
             </tr>
           </table>
         </div>
@@ -446,55 +446,55 @@
             </tr>
             <tr>
               <td>27</td>
-              <td>A</td>
+              <td>{{answersUser.[26]}}</td>
             </tr>
             <tr>
               <td>28</td>
-              <td>A</td>
+              <td>{{answersUser.[27]}}</td>
             </tr>
             <tr>
               <td>29</td>
-              <td>A</td>
+              <td>{{answersUser.[28]}}</td>
             </tr>
             <tr>
               <td>30</td>
-              <td>A</td>
+              <td>{{answersUser.[29]}}</td>
             </tr>
             <tr>
               <td>31</td>
-              <td>A</td>
+              <td>{{answersUser.[30]}}</td>
             </tr>
             <tr>
               <td>32</td>
-              <td>A</td>
+              <td>{{answersUser.[31]}}</td>
             </tr>
             <tr>
               <td>33</td>
-              <td>A</td>
+              <td>{{answersUser.[32]}}</td>
             </tr>
             <tr>
               <td>34</td>
-              <td>A</td>
+              <td>{{answersUser.[33]}}</td>
             </tr>
             <tr>
               <td>35</td>
-              <td>A</td>
+              <td>{{answersUser.[34]}}</td>
             </tr>
             <tr>
               <td>36</td>
-              <td>A</td>
+              <td>{{answersUser.[35]}}</td>
             </tr>
             <tr>
               <td>37</td>
-              <td>A</td>
+              <td>{{answersUser.[36]}}</td>
             </tr>
             <tr>
               <td>38</td>
-              <td>A</td>
+              <td>{{answersUser.[37]}}</td>
             </tr>
             <tr>
               <td>39</td>
-              <td>A</td>
+              <td>{{answersUser.[38]}}</td>
             </tr>
           </table>
         </div>
@@ -506,55 +506,55 @@
             </tr>
             <tr>
               <td>40</td>
-              <td>A</td>
+              <td>{{answersUser.[39]}}</td>
             </tr>
             <tr>
               <td>41</td>
-              <td>A</td>
+              <td>{{answersUser.[40]}}</td>
             </tr>
             <tr>
               <td>42</td>
-              <td>A</td>
+              <td>{{answersUser.[41]}}</td>
             </tr>
             <tr>
               <td>43</td>
-              <td>A</td>
+              <td>{{answersUser.[42]}}</td>
             </tr>
             <tr>
               <td>44</td>
-              <td>A</td>
+              <td>{{answersUser.[43]}}</td>
             </tr>
             <tr>
               <td>45</td>
-              <td>A</td>
+              <td>{{answersUser.[44]}}</td>
             </tr>
             <tr>
               <td>46</td>
-              <td>A</td>
+              <td>{{answersUser.[45]}}</td>
             </tr>
             <tr>
               <td>47</td>
-              <td>A</td>
+              <td>{{answersUser.[46]}}</td>
             </tr>
             <tr>
               <td>48</td>
-              <td>A</td>
+              <td>{{answersUser.[47]}}</td>
             </tr>
             <tr>
               <td>49</td>
-              <td>A</td>
+              <td>{{answersUser.[48]}}</td>
             </tr>
             <tr>
               <td>50</td>
-              <td>A</td>
+              <td>{{answersUser.[49]}}</td>
             </tr>
             <tr>
-              <td>50</td>
-              <td>A</td>
+              <td>51</td>
+              <td></td>
             </tr>
             <tr>
-              <td>50</td>
-              <td>A</td>
+              <td>52</td>
+              <td></td>
             </tr>
           </table>
         </div>

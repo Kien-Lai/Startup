@@ -221,7 +221,8 @@ app.post('/result',middleware.confirmLogin, (req,res)=>{
                           bonusPoint: Math.round(doc.numberOfTrueAnswer*0.2*1000*factor)/1000,
                           newRank: req.user.rank,
                           newPoint: Math.round( req.user.point*1000 + doc.numberOfTrueAnswer*0.2*1000*factor)/1000,
-                          trueAnswer: exam.answers
+                          trueAnswer: exam.answers,
+                          examName : exam.name
                         };
                         var historyData = {
                           idExam : exam.id,
@@ -235,7 +236,8 @@ app.post('/result',middleware.confirmLogin, (req,res)=>{
                           else console.log('done');
                         })
                          res.render('result',{answersUser: data.answersUser,numberOfTrueAnswer: data.numberOfTrueAnswer,arrayAnswer: data.arrayAnswer,
-                           nowPoint: data.nowPoint,score: data.score,bonusPoint: data.bonusPoint,newPoint: data.newPoint,trueAnswer: data.trueAnswer
+                           nowPoint: data.nowPoint,score: data.score,bonusPoint: data.bonusPoint,newPoint: data.newPoint,trueAnswer: data.trueAnswer,
+                           examName : data.examName,rank : data.newRank
                          });
 
                       }
@@ -252,7 +254,10 @@ app.post('/result',middleware.confirmLogin, (req,res)=>{
                   arrayAnswer : doc.arrayAnswer, //mảng gồm những câu đúng và sai
                   nowPoint: req.user.point, // poit hiện tại của user
                   score:  Math.round(doc.numberOfTrueAnswer*0.2*1000)/1000, //điểm bài thi
-                  trueAnswer: exam.answers
+                  trueAnswer: exam.answers,
+                  examName : exam.name,
+                  rank : req.user.rank,
+                  bonusPoint : 0
                 }
                 var coreHistory = {
                   idExam : exam.id,
@@ -263,7 +268,8 @@ app.post('/result',middleware.confirmLogin, (req,res)=>{
                   if(err) console.log(err);
                   else {
                     res.render('result',{answersUser: coreData.answersUser,numberOfTrueAnswer: coreData.numberOfTrueAnswer,arrayAnswer: coreData.arrayAnswer,
-                    nowPoint: coreData.newPoint,score: coreData.score,trueAnswer: coreData.trueAnswer});
+                    nowPoint: coreData.nowPoint,score: coreData.score,trueAnswer: coreData.trueAnswer,examName: coreData.examName,rank: coreData.rank,
+                  bonusPoint: coreData.bonusPoint});
                   }
                 })
               }
