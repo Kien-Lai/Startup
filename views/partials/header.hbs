@@ -1,106 +1,108 @@
-<nav class="white">
-  <div class="nav-wrapper nav-wrapper-login">
-    <a href="/home/math"><img src="../images/home.png" id="home"></a>
-    <img src="../images/main_logo.png" id="logo">
-    {{#unless user}}
-      <ul class="right hide-on-med-and-down ">
-        <li onclick="scroll_to_aboutus()"><a href="#" class="black-text menu"><i class="fa fa-globe fa" aria-hidden="true"></i>  About us</a></li>
-        <li><a href="#modal1" class="black-text menu"><i class="fa fa-sign-in fa" aria-hidden="true"></i>  Login</a></li>
-        <li><a href="#modal2" class="black-text menu"><i class="fa fa-heartbeat" aria-hidden="true"></i>  Signup</a></li>
-      </ul>
-      <ul id="nav-mobile" class="side-nav">
-        <li><a href="#" class="black-text" onclick=" scroll_to_aboutus() ">About us</a></li>
-        <li><a href="/users" class="black-text ">Login</a></li>
-        <li><a href="# " class="black-text ">Signup</a></li>
-      </ul>
-    {{/unless}}
-  </div>
-</nav>
+<div id="header">
+  <nav class="white">
+    <div class="nav-wrapper nav-wrapper-login">
+      <a href="/home/math"><img src="../images/home.png" id="home"></a>
+      <img src="../images/main_logo.png" id="logo">
+      {{#unless user}}
+        <ul class="right hide-on-med-and-down ">
+          <li onclick="scroll_to_aboutus()"><a href="#" class="black-text menu"><i class="fa fa-globe fa" aria-hidden="true"></i>  About us</a></li>
+          <li><a href="#modal1" class="black-text menu"><i class="fa fa-sign-in fa" aria-hidden="true"></i>  Login</a></li>
+          <li><a href="#modal2" class="black-text menu"><i class="fa fa-heartbeat" aria-hidden="true"></i>  Signup</a></li>
+        </ul>
+        <ul id="nav-mobile" class="side-nav">
+          <li><a href="#" class="black-text" onclick=" scroll_to_aboutus() ">About us</a></li>
+          <li><a href="/users" class="black-text ">Login</a></li>
+          <li><a href="# " class="black-text ">Signup</a></li>
+        </ul>
+      {{/unless}}
+    </div>
+  </nav>
 
-<!-- Modal Structure -->
-<div id="modal1" class="modal">
-  <div class="modal-header center">
-    <div style="margin-top: 30px; margin-bottom: 0px;"><img src="../images/main_logo_techkid.png"></div>
-  </div>
-  <div class="modal-content">
-    <div class="row">
-      <form action="api/users/login" method="POST" class="col s12">
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-header center">
+      <div style="margin-top: 30px; margin-bottom: 0px;"><img src="../images/main_logo_techkid.png"></div>
+    </div>
+    <div class="modal-content">
+      <div class="row">
+        <form action="api/users/login" method="POST" class="col s12">
 
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="email" type="text" name="username" class="validate">
-            <label for="email">Username</label>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="email" type="text" name="username" class="validate">
+              <label for="email">Username</label>
+            </div>
           </div>
-        </div>
 
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="password" type="password" name="password" class="validate">
-            <label for="password">Password</label>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="password" type="password" name="password" class="validate">
+              <label for="password">Password</label>
+            </div>
           </div>
-        </div>
 
-        <div class="row">
-          <div class="col s12 center">
-            <button id="login-button" type="submit" class="waves-effect waves-light btn green">Login</button>
+          <div class="row">
+            <div class="col s12 center">
+              <button id="login-button" type="submit" class="waves-effect waves-light btn green">Login</button>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
 
-      <form action="api/users/auth/fb" method="GET">
-        <div class="row">
-          <div class="col s12 center">
-            <button id="login-fb-button" type="submit" class="waves-effect waves-light btn green">Login with Facebook</button>
+        <form action="api/users/auth/fb" method="GET">
+          <div class="row">
+            <div class="col s12 center">
+              <button id="login-fb-button" type="submit" class="waves-effect waves-light btn green">Login with Facebook</button>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
 
+      </div>
     </div>
   </div>
-</div>
 
-<div id="modal2" class="modal modal-signup">
-  <div class="modal-header center">
-    <div style="margin-top: 30px; margin-bottom: 0px;"><img src="../images/main_logo_techkid.png"></div>
-  </div>
-  <div class="modal-content">
-    <div class="row">
-      <form action="api/users/signup" method="POST" class="col s12">
+  <div id="modal2" class="modal modal-signup">
+    <div class="modal-header center">
+      <div style="margin-top: 30px; margin-bottom: 0px;"><img src="../images/main_logo_techkid.png"></div>
+    </div>
+    <div class="modal-content">
+      <div class="row">
+        <form action="api/users/signup" method="POST" class="col s12">
 
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="email" type="text" name="username" class="validate">
-            <label for="email">Username</label>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="email" type="text" name="username" class="validate">
+              <label for="email">Username</label>
+            </div>
           </div>
-        </div>
 
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="email" type="email" name="email" class="validate">
-            <label for="email">Email</label>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="email" type="email" name="email" class="validate">
+              <label for="email">Email</label>
+            </div>
           </div>
-        </div>
 
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="password" type="password" name="password" class="validate">
-            <label for="password">Password</label>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="password" type="password" name="password" class="validate">
+              <label for="password">Password</label>
+            </div>
           </div>
-        </div>
 
-        <div class="row">
-          <div class="input-field col s12">
-            <input id="re-password" type="password" name="re-password" class="validate">
-            <label for="re-password">Password Confirm</label>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="re-password" type="password" name="re-password" class="validate">
+              <label for="re-password">Password Confirm</label>
+            </div>
           </div>
-        </div>
 
-        <div class="row">
-          <div class="col s12 center">
-            <button id="signup-button" type="submit" class="waves-effect waves-light btn green">Signup</button>
+          <div class="row">
+            <div class="col s12 center">
+              <button id="signup-button" type="submit" class="waves-effect waves-light btn green">Signup</button>
+            </div>
           </div>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   </div>
 </div>

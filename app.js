@@ -113,6 +113,10 @@ app.get('/home/eng',middleware.confirmLogin,(req,res) => {
 
 app.get('/exam',middleware.confirmLogin, (req,res)=>{
   res.render('exam',{nameOfExam:req.query.nameOfExam});
+});
+
+app.get('/result',(req,res)=>{
+  res.render('result');
 })
 
 app.post('/result', (req,res)=>{
