@@ -20,7 +20,7 @@ var rankingUser = (cb) => {
     }else{
       var topTen = [];
       var i=0;
-      var j=1;
+      var j=1; //gán rank
       doc.forEach((user) => {
         updateById(j,user.id,(err,doc)=>{
           if(err) console.log(err);
@@ -34,6 +34,26 @@ var rankingUser = (cb) => {
       return cb(null,topTen);
     }
   })
+}
+
+var onlyRanked =(cb) => {
+  usersModel.find({})
+  .sort({point:-1})
+  .exec((err,doc) => {
+    if(err){
+      console.log(err);
+      return cb(err);
+    }else{
+      var j=1;
+      doc.forEach((user) => {
+        updateById(j,user.id,(err,doc)=>{
+          if(err) console.log(err);
+        });
+        j++;
+      })
+      return cb(null,doc);
+    }
+})
 }
 
 var updateById= (data,id,cb) => {
@@ -114,5 +134,6 @@ module.exports = {
   getUserByUsername,
   rankingUser,
   updateById,
-  updatePoint
+  updatePoint,
+  onlyRanked
 }

@@ -1,7 +1,7 @@
-const historyModel = require('/historyModel')
+const historyModel = require('./historyModel')
 
 var addHistory = (data,cb) => {
-  HistoryModel.create(data,(err,doc) => {
+  historyModel.create(data,(err,doc) => {
     if(err){
       console.log(err);
       cb(err);
@@ -11,6 +11,34 @@ var addHistory = (data,cb) => {
   })
 }
 
+var showHistory= (id,cb) =>{
+  historyModel.find({userIdCreated: id})
+  .exec((err,doc) => {
+    if(err){
+      console.log(err);
+      return cb(err);
+    }else{
+      console.log('shown');
+      return cb(null,doc);
+    }
+  })
+}
+
+var getHistoryByExamId= (idExam,idUser,cb) => {
+  historyModel.findOne({idExam: idExam,userIdCreated: idUser})
+  .exec((err,doc) => {
+    if(err){
+      console.log(err);
+      return cb(err);
+    }else{
+      console.log(doc);
+      return cb(null,doc);
+    }
+  })
+}
+
 module.exports = {
-  addHistory
+  addHistory,
+  showHistory,
+  getHistoryByExamId
 }
