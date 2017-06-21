@@ -211,7 +211,6 @@ app.post('/result',middleware.confirmLogin, (req,res)=>{
                     usersController.rankingUser((er,ok) => {
                       if(er) console.log(er);
                       else {
-                        console.log('chay vao ranking user roi mà no deoo chay');
                         var data = {
                           answersUser : answers, // đáp án người dùng nhập
                           numberOfTrueAnswer : doc.numberOfTrueAnswer, //số đáp án đúng
@@ -235,7 +234,10 @@ app.post('/result',middleware.confirmLogin, (req,res)=>{
                           if(err) console.log(err);
                           else console.log('done');
                         })
-                        res.send(data);
+                         res.render('result',{answersUser: data.answersUser,numberOfTrueAnswer: data.numberOfTrueAnswer,arrayAnswer: data.arrayAnswer,
+                           nowPoint: data.nowPoint,score: data.score,bonusPoint: data.bonusPoint,newPoint: data.newPoint,trueAnswer: data.trueAnswer
+                         });
+
                       }
                     })
                   }
@@ -260,7 +262,8 @@ app.post('/result',middleware.confirmLogin, (req,res)=>{
                 historyController.addHistory(coreHistory,(err,done)=>{
                   if(err) console.log(err);
                   else {
-                    res.send(coreData);
+                    res.render('result',{answersUser: coreData.answersUser,numberOfTrueAnswer: coreData.numberOfTrueAnswer,arrayAnswer: coreData.arrayAnswer,
+                    nowPoint: coreData.newPoint,score: coreData.score,trueAnswer: coreData.trueAnswer});
                   }
                 })
               }
