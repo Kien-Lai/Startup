@@ -45,45 +45,24 @@
 	text-shadow: 0 0 5px rgba(255, 255, 255, 1);
 }
 
-/*Styles for the controls*/
-#timer_controls {
-	margin-top: -5px;
-}
-#timer_controls label {
-	cursor: pointer;
-	padding: 5px 10px;
-	background: #efefef;
-	font-family: arial, verdana, tahoma;
-	font-size: 11px;
-	border-radius: 0 0 3px 3px;
-}
-input[name="controls"] {display: none;}
-
-/*Control code*/
-#stop:checked~.timer .numbers {animation-play-state: paused;}
-#start:checked~.timer .numbers {animation-play-state: running;}
-#reset:checked~.timer .numbers {animation: none;}
 
 .moveten {
-	/*The digits move but dont look good. We will use steps now
-	10 digits = 10 steps. You can now see the digits swapping instead of
-	moving pixel-by-pixel*/
 	animation: moveten 1s steps(10, end) infinite;
-	/*By default animation should be paused*/
-	animation-play-state: paused;
 }
+
 .movesix {
 	animation: movesix 1s steps(6, end) infinite;
-	animation-play-state: paused;
 }
 
-/*Now we need to sync the animation speed with time speed*/
+/*.second {
+	animation-play-state: paused;
+}*/
+
 /*One second per digit. 10 digits. Hence 10s*/
 .second {animation-duration: 10s;}
-.tensecond {animation-duration: 60s;} /*60 times .second*/
-
-.minute {animation-duration: 600s;} /*60 times .second*/
-.tenminute {animation-duration: 5400s;} /*60 times .minute*/
+.tensecond {animation-duration: 60s;}
+.minute {animation-duration: 600s;}
+.tenminute {animation-duration: 6000s;} /*90 times .minute*/
 
 
 @keyframes moveten {
