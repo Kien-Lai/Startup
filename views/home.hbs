@@ -16,6 +16,14 @@
   }
 </script>
 
+<script type="text/javascript">
+  var onEnterKey= function(){
+    if(event.keyCode==13){
+      search();
+    }
+  }
+</script>
+
 <div class="wrapper-nav">
         <nav class="teal lighten-2 menu-holizontal" id="nav">
         <ul class="left">
@@ -69,7 +77,7 @@
                 <i class="fa fa-search" aria-hidden="true">Tìm Kiếm</i>
                 <div class="row">
                   <div class="col s10 l10">
-                    <input type="text" id="key">
+                    <input type="text" id="key" onkeydown="onEnterKey()">
                   </div>
                   <div class="col s2 l2">
                     <div class="btn" onclick="search()">Tìm</div>
@@ -89,9 +97,9 @@
                 {{#each exams}}
                   {{#compare this.level "==" "easy"}}
                     <li>
-                      <div class="collapsible-header name_of_exam"><i class="fa fa-angle-double-right" aria-hidden="true"></i>{{this.name}}</div>
+                      <div class="collapsible-header name_of_exam"><i class="fa fa-angle-double-right" aria-hidden="true"></i>{{this.name}}<i class="fa fa-eye right" aria-hidden="true"></i></div>
                       <div class="collapsible-body">
-                        <div>Facebook is an American for-profit corporation and an online social media and social networking service based in Menlo Park, California. The Facebook website was launched on February 4, 2004, by Mark Zuckerberg, along with fellow Harvard College students and roommates, Eduardo Saverin, Andrew McCollum, Dustin Moskovitz, and Chris Hughes.<i class="fa fa-eye right" aria-hidden="true"></i></div>
+                        <div>Facebook is an American for-profit corporation and an online social media and social networking service based in Menlo Park, California. The Facebook website was launched on February 4, 2004, by Mark Zuckerberg, along with fellow Harvard College students and roommates, Eduardo Saverin, Andrew McCollum, Dustin Moskovitz, and Chris Hughes.</div>
                         <div class="center">
                           <a class="waves-effect waves-light btn" href="/exam/?nameOfExam={{this.name}}">Làm đề</a>
                         </div>
@@ -108,9 +116,9 @@
                   {{#each exams}}
                     {{#compare this.level "==" "medium"}}
                         <li>
-                          <div class="collapsible-header name_of_exam"><i class="fa fa-angle-double-right" aria-hidden="true"></i>{{this.name}}</div>
+                          <div class="collapsible-header name_of_exam"><i class="fa fa-angle-double-right" aria-hidden="true"></i>{{this.name}}<i class="fa fa-eye right" aria-hidden="true"></i></div>
                           <div class="collapsible-body">
-                            <div>Facebook is an American for-profit corporation and an online social media and social networking service based in Menlo Park, California. The Facebook website was launched on February 4, 2004, by Mark Zuckerberg, along with fellow Harvard College students and roommates, Eduardo Saverin, Andrew McCollum, Dustin Moskovitz, and Chris Hughes.<i class="fa fa-eye right" aria-hidden="true"></i></div>
+                            <div>Facebook is an American for-profit corporation and an online social media and social networking service based in Menlo Park, California. The Facebook website was launched on February 4, 2004, by Mark Zuckerberg, along with fellow Harvard College students and roommates, Eduardo Saverin, Andrew McCollum, Dustin Moskovitz, and Chris Hughes.</div>
                             <div class="center">
                               <a class="waves-effect waves-light btn" href="/exam/?nameOfExam={{this.name}}">Làm đề</a>
                             </div>
@@ -128,9 +136,9 @@
                   {{#each exams}}
                     {{#compare this.level "==" "difficult"}}
                       <li>
-                        <div class="collapsible-header name_of_exam"><i class="fa fa-angle-double-right" aria-hidden="true"></i>{{this.name}}</div>
+                        <div class="collapsible-header name_of_exam"><i class="fa fa-angle-double-right" aria-hidden="true"></i>{{this.name}}<i class="fa fa-eye right" aria-hidden="true"></i></div></div>
                         <div class="collapsible-body">
-                          <div>Facebook is an American for-profit corporation and an online social media and social networking service based in Menlo Park, California. The Facebook website was launched on February 4, 2004, by Mark Zuckerberg, along with fellow Harvard College students and roommates, Eduardo Saverin, Andrew McCollum, Dustin Moskovitz, and Chris Hughes.<i class="fa fa-eye right" aria-hidden="true"></i></div>
+                          <div>Facebook is an American for-profit corporation and an online social media and social networking service based in Menlo Park, California. The Facebook website was launched on February 4, 2004, by Mark Zuckerberg, along with fellow Harvard College students and roommates, Eduardo Saverin, Andrew McCollum, Dustin Moskovitz, and Chris Hughes.
                           <div class="center">
                             <a class="waves-effect waves-light btn" href="/exam/?nameOfExam={{this.name}}">Làm đề</a>
                           </div>
