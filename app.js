@@ -297,7 +297,7 @@ app.get('/history',middleware.confirmLogin,(req,res) => {
 })
 
 app.get('/news',(req,res)=>{
-  res.render('news');
+  res.render('news', {user: req.user});
 })
 
 app.get('/progess',middleware.confirmLogin,(req,res)=>{
@@ -342,7 +342,7 @@ app.get('/progess',middleware.confirmLogin,(req,res)=>{
                       return value.name;
                      })
                      res.render('progess',{pointEasy: pointEasy,nameEasy: nameEasy,pointDifficult: pointDifficult,nameDifficult: nameDifficult,pointMedium:pointMedium,
-                     pointAll:pointAll,nameAll:nameAll,nameMedium: nameMedium});
+                     pointAll:pointAll,nameAll:nameAll,nameMedium: nameMedium, user: req.user});
                    }
                  })
               }

@@ -38,7 +38,7 @@
     </div>
   </div>
   <div class="col s10 l10">
-    <canvas id="easy" width="1000" height="400">ahihi đồ chó</canvas>
+    <canvas id="easy" width="1000" height="400"></canvas>
     <h1>{{point}}</h1>
     <h2>{{name}}</h2>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js" integrity="sha256-VNbX9NjQNRW+Bk02G/RO6WiTKuhncWI4Ey7LkSbE+5s=" crossorigin="anonymous"></script>
@@ -56,8 +56,9 @@
             datasets: [{
                 label: 'Your Score',
                 data: [{{pointEasy}}],
-                backgroundColor: 'green'
-
+                backgroundColor: '',
+                borderColor:'#4DB6AC',
+                borderWidth: 3
             }]
         },
         options: {
@@ -93,9 +94,7 @@
                 backgroundColor: [
 
                 ],
-                borderColor: [
-
-                ],
+                borderColor:'#4DB6AC',
                 borderWidth: 1
             }]
         },
