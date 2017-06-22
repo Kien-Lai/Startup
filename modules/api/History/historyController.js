@@ -37,8 +37,47 @@ var getHistoryByExamId= (idExam,idUser,cb) => {
   })
 }
 
-var getPoint= (data,cb) => {
-  historyModel.find({subject:data.subject,level:data.level,userIdCreated: data.userId})
+var getPointEasy= (data,cb) => {
+  historyModel.find({subject:data.subject,level:'easy',userIdCreated: data.userId})
+  .exec((err,doc) => {
+    if(err){
+     console.log(err);
+       return cb(err);
+    }else{
+       // console.log(doc);
+        return cb(null,doc);
+      }
+    })
+}
+
+var getPointMedium= (data,cb) => {
+  historyModel.find({subject:data.subject,level:'medium',userIdCreated: data.userId})
+  .exec((err,doc) => {
+    if(err){
+     console.log(err);
+       return cb(err);
+    }else{
+       // console.log(doc);
+        return cb(null,doc);
+      }
+    })
+}
+
+var getPointDifficult= (data,cb) => {
+  historyModel.find({subject:data.subject,level:'difficult',userIdCreated: data.userId})
+  .exec((err,doc) => {
+    if(err){
+     console.log(err);
+       return cb(err);
+    }else{
+       // console.log(doc);
+        return cb(null,doc);
+      }
+    })
+}
+
+var getPointAll= (data,cb) => {
+  historyModel.find({subject:data.subject,userIdCreated: data.userId})
   .exec((err,doc) => {
     if(err){
      console.log(err);
@@ -53,5 +92,8 @@ module.exports = {
   addHistory,
   showHistory,
   getHistoryByExamId,
-  getPoint
+  getPointEasy,
+  getPointMedium,
+  getPointDifficult,
+  getPointAll
 }
