@@ -30,7 +30,7 @@ var saveExam= (object, callback)=>{
 }
 
 var getAllExamsOfMath = (cb) => {
-examsModel.find({subject:"math"},{name: 1,_id: 0, level:1})
+examsModel.find({subject:"math"},{name: 1,_id: 0, level:1,id:1})
 .exec((err,doc) => {
   if(err){
     cb(err);
