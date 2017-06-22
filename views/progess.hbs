@@ -37,6 +37,51 @@
     </div>
   </div>
   <div class="col s10 l10">
+    <canvas id="myChart" width="400" height="400">ahihi đồ chó</canvas>
+    <h1>{{point}}</h1>
+    <h2>{{name}}</h2>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.bundle.min.js" integrity="sha256-VNbX9NjQNRW+Bk02G/RO6WiTKuhncWI4Ey7LkSbE+5s=" crossorigin="anonymous"></script>
+    <script>
+    var ctx = document.getElementById("myChart").getContext('2d');
+    var point = "{{@point}}";
+    var name = "{{@name}}";
+    var myChart = new Chart(ctx, {
+        type: 'line',
+         data: {
+            labels: ['{{name.[0]}}','{{name.[1]}}','{{name.[2]}}','{{name.[3]}}'],
+            datasets: [{
+                label: 'Your Score',
+                data: [{{point}}],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }]
+            }
+        }
+    });
+    </script>
 
   </div>
 </div>
