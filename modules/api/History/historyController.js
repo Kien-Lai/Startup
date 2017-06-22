@@ -37,8 +37,21 @@ var getHistoryByExamId= (idExam,idUser,cb) => {
   })
 }
 
+var getPoint= (data,cb) => {
+  historyModel.find({subject:data.subject,level:data.level,userIdCreated: data.userId})
+  .exec((err,doc) => {
+    if(err){
+     console.log(err);
+       return cb(err);
+    }else{
+       // console.log(doc);
+        return cb(null,doc);
+      }
+    })
+}
 module.exports = {
   addHistory,
   showHistory,
-  getHistoryByExamId
+  getHistoryByExamId,
+  getPoint
 }

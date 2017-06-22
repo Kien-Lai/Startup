@@ -229,7 +229,11 @@ app.post('/result',middleware.confirmLogin, (req,res)=>{
                           numberOfTrueAnswer : doc.numberOfTrueAnswer,
                           userIdCreated: req.user.id,
                           rankUpdated: req.user.rank,
-                          bonusPoint: data.bonusPoint
+                          bonusPoint: data.bonusPoint,
+                          level: exam.level,
+                          subject: exam.subject,
+                          score: Math.round(doc.numberOfTrueAnswer*0.2*1000)/1000,
+                          name: exam.name
                         };
                         historyController.addHistory(historyData,(err,done)=>{
                           if(err) console.log(err);
@@ -262,7 +266,11 @@ app.post('/result',middleware.confirmLogin, (req,res)=>{
                 var coreHistory = {
                   idExam : exam.id,
                   numberOfTrueAnswer : doc.numberOfTrueAnswer,
-                  userIdCreated: req.user.id
+                  userIdCreated: req.user.id,
+                  level: exam.level,
+                  subject: exam.subject,
+                  score: Math.round(doc.numberOfTrueAnswer*0.2*1000)/1000,
+                  name: exam.name
                 }
                 historyController.addHistory(coreHistory,(err,done)=>{
                   if(err) console.log(err);
@@ -292,8 +300,26 @@ app.get('/news',(req,res)=>{
   res.render('news');
 })
 
-app.get('/progess',(req,res)=>{
-  res.render('progess');
+app.get('/progess',middleware.confirmLogin,(req,res)=>{
+  var data = {
+   subject : 'math',
+   level : 'easy',
+   userId : req.user.id
+  }
+ historyController.getPoint(data,(err,doc) => {
+    if(err) res.send('đã xảy ra lỗi');
+    else{
+     var point = doc.map((value) => {
+      return value.score;
+      })
+      var name = doc.map((value) => {
+      return value.name;
+      })
+      console.log(point);
+      res.render('progess',{point: point,name: name});
+    }
+  })
+
 })
 
 mongoose.connect(config.connectionString, (err) => {
