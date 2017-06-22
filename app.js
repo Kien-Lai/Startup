@@ -19,11 +19,12 @@ const app = express();
 const flash = require('connect-flash');
 const historyModel = require('./modules/api/History/historyModel.js');
 const historyController = require('./modules/api/History/historyController.js');
+const quotesController = require('./modules/api/Quotes/quotesController.js');
 
 app.use(session({
   secret: "khang",
   cookie: {
-    maxAge : 1000*60*5*1000 //khoang thoi gian luu cookie
+    maxAge : 1000*60*5*10000000000 //khoang thoi gian luu cookie
     }
   }))
 
@@ -62,7 +63,12 @@ app.get('/home/math',middleware.confirmLogin,(req,res) => {
       usersController.rankingUser((err,doc) =>{
         if(err) res.send(err);
         else{
-          res.render('home',{user: req.user, exams: data, subject: 'math',message:req.flash().success,top10:doc});
+          quotesController.getRandomQuote((err,quote) => {
+            if(err) res.send(err);
+            else {
+              res.render('home',{user: req.user, exams: data, subject: 'math',message:req.flash().success,top10:doc,quote:quote[0].quote});
+            }
+          })
         }
       })
     }
@@ -77,7 +83,12 @@ app.get('/home/phy',middleware.confirmLogin,(req,res) => {
       usersController.rankingUser((err,doc) =>{
         if(err) res.send(err);
         else{
-          res.render('home',{user: req.user, exams: data, subject: 'phy',message:req.flash().success,top10:doc});
+          quotesController.getRandomQuote((err,quote) => {
+            if(err) res.send(err);
+            else {
+              res.render('home',{user: req.user, exams: data, subject: 'phy',message:req.flash().success,top10:doc,quote:quote[0].quote});
+            }
+          })
         }
       })
     }
@@ -85,6 +96,7 @@ app.get('/home/phy',middleware.confirmLogin,(req,res) => {
 });
 
 app.get('/home/chem',middleware.confirmLogin,(req,res) => {
+  var lastData = [];
   examsController.getAllExamsOfChem((err, data)=>{
     if(err){
       res.send(err);
@@ -92,7 +104,12 @@ app.get('/home/chem',middleware.confirmLogin,(req,res) => {
       usersController.rankingUser((err,doc) =>{
         if(err) res.send(err);
         else{
-          res.render('home',{user: req.user, exams: data, subject: 'chem',message:req.flash().success,top10:doc});
+          quotesController.getRandomQuote((err,quote) => {
+            if(err) res.send(err);
+            else {
+              res.render('home',{user: req.user, exams: data, subject: 'chem',message:req.flash().success,top10:doc,quote:quote[0].quote});
+            }
+          })
         }
       })
     }
@@ -107,7 +124,17 @@ app.get('/home/bio',middleware.confirmLogin,(req,res) => {
       usersController.rankingUser((err,doc) =>{
         if(err) res.send(err);
         else{
-          res.render('home',{user: req.user, exams: data, subject: 'bio',message:req.flash().success,top10:doc});
+          historyController.getHistoryByExamId(data.id,req.user.id,(err,history) => {
+            if(err) res.send('đã xảy ra lỗi');
+            else{
+              quotesController.getRandomQuote((err,quote) => {
+                if(err) res.send(err);
+                else {
+                  res.render('home',{user: req.user, exams: data, subject: 'bio',message:req.flash().success,top10:doc,quote:quote[0].quote});
+                }
+              })
+            }
+          })
         }
       })
     }
@@ -122,7 +149,12 @@ app.get('/home/eng',middleware.confirmLogin,(req,res) => {
       usersController.rankingUser((err,doc) =>{
         if(err) res.send(err);
         else{
-          res.render('home',{user: req.user, exams: data, subject: 'eng',message:req.flash().success,top10:doc});
+          quotesController.getRandomQuote((err,quote) => {
+            if(err) res.send(err);
+            else {
+              res.render('home',{user: req.user, exams: data, subject: 'eng',message:req.flash().success,top10:doc,quote:quote[0].quote});
+            }
+          })
         }
       })
     }
@@ -228,7 +260,7 @@ app.post('/result',middleware.confirmLogin, (req,res)=>{
                           numberOfTrueAnswer : doc.numberOfTrueAnswer, //số đáp án đúng
                           arrayAnswer : doc.arrayAnswer, //mảng gồm những câu đúng và sai
                           nowPoint: req.user.point, // poit hiện tại của user
-                          score:  Math.round(doc.numberOfTrueAnswer*0.2*1000)/1000, //điểm bài thi
+                          score:  Math.round((doc.numberOfTrueAnswer/exam.numberOfQuestions)*10*1000)/1000, //điểm bài thi
                           oldrank : oldrank,
                           bonusPoint: Math.round(doc.numberOfTrueAnswer*0.2*1000*factor)/1000,
                           newRank: req.user.rank,
@@ -244,7 +276,7 @@ app.post('/result',middleware.confirmLogin, (req,res)=>{
                           bonusPoint: data.bonusPoint,
                           level: exam.level,
                           subject: exam.subject,
-                          score: Math.round(doc.numberOfTrueAnswer*0.2*1000)/1000,
+                          score:  Math.round((doc.numberOfTrueAnswer/exam.numberOfQuestions)*10*1000)/1000,
                           name: exam.name
                         };
                         historyController.addHistory(historyData,(err,done)=>{
@@ -269,7 +301,7 @@ app.post('/result',middleware.confirmLogin, (req,res)=>{
                   numberOfTrueAnswer : doc.numberOfTrueAnswer, //số đáp án đúng
                   arrayAnswer : doc.arrayAnswer, //mảng gồm những câu đúng và sai
                   nowPoint: req.user.point, // poit hiện tại của user
-                  score:  Math.round(doc.numberOfTrueAnswer*0.2*1000)/1000, //điểm bài thi
+                  score:  Math.round((doc.numberOfTrueAnswer/exam.numberOfQuestions)*10*1000)/1000,  //điểm bài thi
                   trueAnswer: exam.answers,
                   examName : exam.name,
                   rank : req.user.rank,
@@ -281,7 +313,7 @@ app.post('/result',middleware.confirmLogin, (req,res)=>{
                   userIdCreated: req.user.id,
                   level: exam.level,
                   subject: exam.subject,
-                  score: Math.round(doc.numberOfTrueAnswer*0.2*1000)/1000,
+                  score:  Math.round((doc.numberOfTrueAnswer/exam.numberOfQuestions)*10*1000)/1000,
                   name: exam.name
                 }
                 historyController.addHistory(coreHistory,(err,done)=>{
@@ -305,6 +337,13 @@ app.get('/history',middleware.confirmLogin,(req,res) => {
   historyController.showHistory(req.user.id,(err,doc) => {
     if(err) res.send('ERROR');
     else res.send(doc);
+  })
+})
+
+app.get('/quote',(req,res) => {
+  quotesController.getRandomQuote((err,doc) => {
+    if(err) res.send(err);
+    else res.send(doc.quote);
   })
 })
 
@@ -363,11 +402,17 @@ app.get('/progess',middleware.confirmLogin,(req,res)=>{
        })
     }
   })
+})
 
 
-
-
-
+app.post('/quote', (req,res) => {
+  var data= {
+  quote : req.body.data
+  }
+  quotesController.writeQuote(data,(err,doc) => {
+    if(err) console.log(err);
+    else res.send('ok');
+  })
 })
 
 mongoose.connect(config.connectionString, (err) => {

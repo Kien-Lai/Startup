@@ -31,7 +31,6 @@ var getHistoryByExamId= (idExam,idUser,cb) => {
       console.log(err);
       return cb(err);
     }else{
-      console.log(doc);
       return cb(null,doc);
     }
   })
@@ -88,6 +87,35 @@ var getPointAll= (data,cb) => {
       }
     })
 }
+
+var checkFirst = (data,userId,cb) => {
+  var lastData = [];
+  var array = [];
+  array = data;
+  array.forEach((exam) => {
+    getHistoryByExamId(exam.id,userId,(err,doc) => {
+      if(err){
+        return cb(err);
+      }
+      else{
+        if(doc == null) {
+          lastData.push({
+            level: exam.level,
+            name: exam.name,
+            firstTime: true
+          })
+        }else{
+          lastData.push({
+            level: exam.level,
+            name: exam.name,
+            firstTime: false
+          })
+        }
+        return cb(null,lastData);
+      }
+    })
+  })
+}
 module.exports = {
   addHistory,
   showHistory,
@@ -95,5 +123,6 @@ module.exports = {
   getPointEasy,
   getPointMedium,
   getPointDifficult,
-  getPointAll
+  getPointAll,
+  checkFirst
 }
