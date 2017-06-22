@@ -303,22 +303,58 @@ app.get('/news',(req,res)=>{
 app.get('/progess',middleware.confirmLogin,(req,res)=>{
   var data = {
    subject : 'math',
-   level : 'easy',
    userId : req.user.id
   }
- historyController.getPoint(data,(err,doc) => {
+  historyController.getPointEasy(data,(err,docEasy) => {
     if(err) res.send('đã xảy ra lỗi');
     else{
-     var point = doc.map((value) => {
-      return value.score;
+     var pointEasy = docEasy.map((value) => {
+       return value.score;
       })
-      var name = doc.map((value) => {
-      return value.name;
+      var nameEasy = docEasy.map((value) => {
+        return value.name;
       })
-      console.log(point);
-      res.render('progess',{point: point,name: name});
+      historyController.getPointMedium(data,(err,docMedium) => {
+         if(err) res.send('đã xảy ra lỗi');
+         else{
+          var pointMedium = docMedium.map((value) => {
+            return value.score;
+          })
+          var nameMedium = docMedium.map((value) => {
+            return value.name;
+           })
+           historyController.getPointDifficult(data,(err,docDifficult) => {
+              if(err) res.send('đã xảy ra lỗi');
+              else{
+               var pointDifficult = docDifficult.map((value) => {
+                 return value.score;
+                })
+                var nameDifficult = docDifficult.map((value) => {
+                  return value.name;
+                })
+                historyController.getPointAll(data,(err,docAll) => {
+                   if(err) res.send('đã xảy ra lỗi');
+                   else{
+                    var pointAll = docAll.map((value) => {
+                      return value.score;
+                     })
+                    var nameAll = docAll.map((value) => {
+                      return value.name;
+                     })
+                     res.render('progess',{pointEasy: pointEasy,nameEasy: nameEasy,pointDifficult: pointDifficult,nameDifficult: nameDifficult,pointMedium:pointMedium,
+                     pointAll:pointAll,nameAll:nameAll,nameMedium: nameMedium});
+                   }
+                 })
+              }
+            })
+         }
+       })
     }
   })
+
+
+
+
 
 })
 
