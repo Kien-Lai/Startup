@@ -74,8 +74,12 @@ app.get('/home/phy',middleware.confirmLogin,(req,res) => {
     if(err){
       res.send(err);
     }else{
-      console.log(data);
-      res.render('home',{user: req.user, exams: data, subject: 'phy'});
+      usersController.rankingUser((err,doc) =>{
+        if(err) res.send(err);
+        else{
+          res.render('home',{user: req.user, exams: data, subject: 'phy',message:req.flash().success,top10:doc});
+        }
+      })
     }
   })
 });
@@ -85,8 +89,12 @@ app.get('/home/chem',middleware.confirmLogin,(req,res) => {
     if(err){
       res.send(err);
     }else{
-      console.log(data);
-      res.render('home',{user: req.user, exams: data, subject: 'chem'});
+      usersController.rankingUser((err,doc) =>{
+        if(err) res.send(err);
+        else{
+          res.render('home',{user: req.user, exams: data, subject: 'chem',message:req.flash().success,top10:doc});
+        }
+      })
     }
   })
 });
@@ -96,8 +104,12 @@ app.get('/home/bio',middleware.confirmLogin,(req,res) => {
     if(err){
       res.send(err);
     }else{
-      console.log(data);
-      res.render('home',{user: req.user, exams: data, subject: 'bio'});
+      usersController.rankingUser((err,doc) =>{
+        if(err) res.send(err);
+        else{
+          res.render('home',{user: req.user, exams: data, subject: 'bio',message:req.flash().success,top10:doc});
+        }
+      })
     }
   })
 });
@@ -107,19 +119,19 @@ app.get('/home/eng',middleware.confirmLogin,(req,res) => {
     if(err){
       res.send(err);
     }else{
-      console.log(data);
-      res.render('home',{user: req.user, exams: data, subject: 'eng'});
+      usersController.rankingUser((err,doc) =>{
+        if(err) res.send(err);
+        else{
+          res.render('home',{user: req.user, exams: data, subject: 'eng',message:req.flash().success,top10:doc});
+        }
+      })
     }
   })
 });
 
 app.get('/exam',middleware.confirmLogin, (req,res)=>{
-  res.render('exam',{nameOfExam:req.query.nameOfExam});
+  res.render('exam',{nameOfExam:req.query.nameOfExam, user:req.user});
 });
-
-app.get('/result',(req,res)=>{
-  res.render('result');
-})
 
 app.post('/result',middleware.confirmLogin, (req,res)=>{
   const oldrank = req.user.rank; //rank cu cua user
@@ -241,7 +253,7 @@ app.post('/result',middleware.confirmLogin, (req,res)=>{
                         })
                          res.render('result',{answersUser: data.answersUser,numberOfTrueAnswer: data.numberOfTrueAnswer,arrayAnswer: data.arrayAnswer,
                            nowPoint: data.nowPoint,score: data.score,bonusPoint: data.bonusPoint,newPoint: data.newPoint,trueAnswer: data.trueAnswer,
-                           examName : data.examName,rank : data.newRank
+                           examName : data.examName,rank : data.newRank, user: req.user
                          });
 
                       }
@@ -277,7 +289,7 @@ app.post('/result',middleware.confirmLogin, (req,res)=>{
                   else {
                     res.render('result',{answersUser: coreData.answersUser,numberOfTrueAnswer: coreData.numberOfTrueAnswer,arrayAnswer: coreData.arrayAnswer,
                     nowPoint: coreData.nowPoint,score: coreData.score,trueAnswer: coreData.trueAnswer,examName: coreData.examName,rank: coreData.rank,
-                  bonusPoint: coreData.bonusPoint});
+                  bonusPoint: coreData.bonusPoint, user: req.user});
                   }
                 })
               }
