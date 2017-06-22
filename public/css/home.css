@@ -112,3 +112,8 @@ menu-holizontal{
   width: 250px;
   border-radius: 5px;
 }
+
+#menu-vertical li{
+  margin-left: 10%;
+  margin-right: 10%;
+}

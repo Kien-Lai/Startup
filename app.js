@@ -288,6 +288,14 @@ app.get('/history',middleware.confirmLogin,(req,res) => {
   })
 })
 
+app.get('/news',(req,res)=>{
+  res.render('news');
+})
+
+app.get('/progess',(req,res)=>{
+  res.render('progess');
+})
+
 mongoose.connect(config.connectionString, (err) => {
   if (err) {
     console.log(err);
