@@ -31,7 +31,19 @@ var getHistoryByExamId= (idExam,idUser,cb) => {
       console.log(err);
       return cb(err);
     }else{
-      console.log(doc);
+      return cb(null,doc);
+    }
+  })
+}
+
+var getPoint= (data,cb) => {
+  historyModel.find({subject:data.subject,level:data.level,userIdCreated: data.userId})
+  .exec((err,doc) => {
+    if(err){
+      console.log(err);
+      return cb(err);
+    }else{
+      // console.log(doc);
       return cb(null,doc);
     }
   })
@@ -40,5 +52,6 @@ var getHistoryByExamId= (idExam,idUser,cb) => {
 module.exports = {
   addHistory,
   showHistory,
-  getHistoryByExamId
+  getHistoryByExamId,
+  getPoint
 }
