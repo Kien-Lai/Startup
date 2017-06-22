@@ -295,6 +295,7 @@ app.get('/history',middleware.confirmLogin,(req,res) => {
   })
 })
 
+
 app.get('/process',middleware.confirmLogin, (req,res) => {
   var data = {
     subject : 'math',
@@ -315,7 +316,12 @@ app.get('/process',middleware.confirmLogin, (req,res) => {
     }
   })
 
+
+app.get('/news',(req,res)=>{
+  res.render('news');
 })
+
+
 
 mongoose.connect(config.connectionString, (err) => {
   if (err) {

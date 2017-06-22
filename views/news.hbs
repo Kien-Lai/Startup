@@ -1,0 +1,42 @@
+<link rel="stylesheet" href="/css/news.css">
+
+<div class="wrapper-nav">
+        <nav class="teal lighten-2 menu-holizontal" id="nav">
+        <ul class="left">
+          <li><a href="#"><i class="fa fa-book icon_of_menu_holizontal"  aria-hidden="true"></i>  Môn Học</a></li>
+          <li><a href="#"><i class="fa fa-bar-chart icon_of_menu_holizontal" aria-hidden="true"></i>  Tiến Trình</a></li>
+          <li class="active"><a href="#"><i class="fa fa-newspaper-o icon_of_menu_holizontal" aria-hidden="true"></i>  Tin Tức</a></li>
+          <li><a href="#"><i class="fa fa-commenting icon_of_menu_holizontal" aria-hidden="true"></i>  Diễn đàn</a></li>
+        </ul>
+        <div class="right" style="max-height:100%">
+          <span id='block_avatar'>
+            <img id='avatar' src="{{user.avatar}}" alt="avatar">
+            {{user.username}}
+            <i class="fa fa-caret-down dropdown-button" aria-hidden="true" data-beloworigin="true" data-activates='dropdown' style="height:15px"></i>
+            <ul class='dropdown-content'id='dropdown' >
+              <li><a href="../api/users/logout">Logout</a></li>
+            </ul>
+          </span>
+        </div>
+      </nav>
+    </div>
+
+<br>
+<div class="divider"></div>
+
+<div class="row">
+  <div class="col s2 l2" >
+    <div id="menu-vertical" class="teal lighten-2">
+      <ul>
+        <li><a href="#">Trang chủ tin tức</a></li>
+        <li><a href="#">Tin tuyển sinh</a></li>
+        <li><a href="#">Đời sống học sinh</a></li>
+        <li><a href="#">Chia sẻ bí kíp</a></li>
+        <li><a href="#">Tấm gương</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="col s10 l10">
+    
+  </div>
+</div>
