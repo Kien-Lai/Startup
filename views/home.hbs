@@ -36,7 +36,7 @@
           name: $(this).find('.name_of_exam').text()
         },
         success: function(result){
-          if(result.check){
+          if(!result.check){
             thisVariable.find('.fa-eye').addClass('teal-text text-lighten-2');
           }
         }
