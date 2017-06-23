@@ -20,6 +20,7 @@ const flash = require('connect-flash');
 const historyModel = require('./modules/api/History/historyModel.js');
 const historyController = require('./modules/api/History/historyController.js');
 const quotesController = require('./modules/api/Quotes/quotesController.js');
+const newsController = require('./modules/api/News/newsController.js');
 
 app.use(session({
   secret: "khang",
@@ -360,8 +361,26 @@ app.get('/quote',(req,res) => {
   })
 })
 
+app.post('/news',(req,res) => {
+  data = {
+    title: req.body.title,
+    imageLink : req.body.title,
+    content: req.body.content,
+    topic: req.body.topic
+  }
+  newsController.upNews(data,(err,doc) => {
+    if(err) res.send('đã xảy ra lỗi');
+    else res.send('done');
+  })
+})
+
 app.get('/news',middleware.confirmLogin,(req,res)=>{
-  res.render('news', {user: req.user});
+  newsController.getAllNews((err,news) =>{
+    if(err) res.send('đã xảy ra lỗi');
+    else {
+        res.render('news', {user: req.user,news:news});
+    }
+  })
 })
 
 app.get('/progess',middleware.confirmLogin,(req,res)=>{
