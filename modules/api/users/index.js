@@ -114,18 +114,23 @@ Router.post('/signup', (req, res) => {
   var newUser = {
     username : req.body.username,
     password : req.body.password,
+    re_password: req.body.re_password,
     email : req.body.email,
     avatar : req.body.avatar
   }
-  usersController.createUser(newUser, (err, doc) => {
-    if (err) {
-      console.log(err);
-      res.redirect('/?message=' + err);
-    } else {
-      var sc = "Bạn đã tạo tài khoản thành công,mời bạn đăng nhập lại";
-      res.redirect('/?SuccessSignup=' + sc );
-    }
-  })
+  if(newUser.password !== newUser.e_password){
+    res.redirect('/?reTypePassWord=true');
+  } else{
+    usersController.createUser(newUser, (err, doc) => {
+      if (err) {
+        console.log(err);
+        res.redirect('/?message=' + err);
+      } else {
+        var sc = "Bạn đã tạo tài khoản thành công,mời bạn đăng nhập lại";
+        res.redirect('/?SuccessSignup=' + sc );
+      }
+    })
+  }
 });
 
 // logout

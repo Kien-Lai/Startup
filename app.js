@@ -51,8 +51,9 @@ app.use('/api/users', usersRouter);
 
 app.get('/',middleware.isGuest, (req, res) => {
   var getMs = req.query.message;
+  var reTypePassWord= req.query.reTypePassWord;
   var SuccessSignup = req.query.SuccessSignup;
-  res.render('index',{LoginMessage: req.flash().error,SignupMessage:getMs,SuccessSignup:SuccessSignup});
+  res.render('index',{LoginMessage: req.flash().error,SignupMessage:getMs,SuccessSignup:SuccessSignup,reTypePassWord:reTypePassWord});
 });
 
 app.get('/home/math',middleware.confirmLogin,(req,res) => {
