@@ -419,7 +419,7 @@ app.post('/news',middleware.confirmLogin,(req,res)=>{
   var title= req.body.title;
   var data= {};
   data.title= title;
-  data.content="Dưới đây là 5 thương vụ chuyển nhượng khác mà Barca bất lực trước PSG<br>Thiago Silva: Gia nhập PSG từ Milan năm 2012 với giá 42 triệu euro và trở thành đội trưởng và biểu tượng của PSG ở thời điểm hiện tai. Barca đã cố gắng ký hợp đồng với cầu thủ người Brazil trong vài mùa Hè gần đây, nhưng không thể thuyết phục được cá nhân cầu thủ này cũng như đội chủ quản PSG.<br>Marquinhos: PSG đã chi ra tới 31,4 triệu euro cho Roma vào năm 2013 để chiêu mộ Marquinhos khi anh mới 19 tuổi. Thời gian đầu, Marquinhos không có vị trí chính thức và đã xao động trước lời đề nghị của Barça, nhưng Nasser Al-Khelaifi lại một lần nữa nói không. Hiện tại, cầu thủ người Brazil đang là trụ cột nơi trung tâm hàng thủ khi sát cánh cùng đàn anh Silva.<br>David Luiz: Một trung vệ người Brazil từng khoác áo PSG là Luiz cũng nhận được sự quan tâm của Barca. PSG đã bỏ ra 49,5 triệu euro để mua Luiz từ Chelsea, trước khi bán anh trở lại Stamford Bridge với giá 35 triệu euro kỳ chuyển nhượng mùa hè năm ngoái.<br>";
+  data.content="lai trung kien";
   res.send(data);
 })
 
