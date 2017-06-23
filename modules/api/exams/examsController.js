@@ -56,7 +56,7 @@ examsModel.find({subject:"phy"},{name: 1,_id: 0, level:1})
 }
 
 var getAllExamsOfChem = (cb) => {
-examsModel.find({subject:"chemistry"},{name: 1,_id: 0, level:1})
+examsModel.find({subject:"chem"},{name: 1,_id: 0, level:1})
 .exec((err,doc) => {
   if(err){
     cb(err);

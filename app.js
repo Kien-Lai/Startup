@@ -249,7 +249,7 @@ app.post('/result',middleware.confirmLogin, (req,res)=>{
             factor = 1;
           }if(exam.level == 'medium'){
             factor = 1.5;
-          }else{
+          }if(exam.level == 'difficult'){
             factor = 2;
           }
 
@@ -276,9 +276,9 @@ app.post('/result',middleware.confirmLogin, (req,res)=>{
                           nowPoint: req.user.point, // poit hiện tại của user
                           score:  Math.round((doc.numberOfTrueAnswer/exam.numberOfQuestions)*10*1000)/1000, //điểm bài thi
                           oldrank : oldrank,
-                          bonusPoint: Math.round(doc.numberOfTrueAnswer*0.2*1000*factor)/1000,
+                          bonusPoint: Math.round((doc.numberOfTrueAnswer/exam.numberOfQuestions)*10*1000*factor)/1000,
                           newRank: req.user.rank,
-                          newPoint: Math.round( req.user.point*1000 + doc.numberOfTrueAnswer*0.2*1000*factor)/1000,
+                          newPoint: Math.round( req.user.point*1000 + (doc.numberOfTrueAnswer/exam.numberOfQuestions)*10*1000*factor)/1000,
                           trueAnswer: exam.answers,
                           examName : exam.name
                         };
@@ -366,7 +366,7 @@ app.get('/quote',(req,res) => {
 app.post('/news',(req,res) => {
   data = {
     title: req.body.title,
-    imageLink : req.body.title,
+    imageLink : req.body.imageLink,
     content: req.body.content,
     brief: req.body.brief,
     catology: req.body.catology
