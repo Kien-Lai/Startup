@@ -17,7 +17,19 @@ var upNews = (data,cb) => {
     }
   })
 }
+
+var getPostByName= (title, cb)=>{
+  news.findOne({title:title}, (err,doc)=>{
+    if(err){
+      cb(err);
+    }else{
+      cb(null,doc);
+    }
+  })
+}
+
 module.exports = {
   getAllNews,
-  upNews
+  upNews,
+  getPostByName
 }

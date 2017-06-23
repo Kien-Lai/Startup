@@ -383,6 +383,16 @@ app.get('/news',middleware.confirmLogin,(req,res)=>{
   })
 })
 
+app.post('/getPost',(req,res)=>{
+  newsController.getPostByName(req.body.title, (err, post)=>{
+    if(err){
+      res.send(err);
+    }else{
+      res.send(post);
+    }
+  })
+})
+
 app.get('/progess',middleware.confirmLogin,(req,res)=>{
   var data = {
    subject : 'math',
@@ -445,14 +455,6 @@ app.post('/quote', (req,res) => {
     if(err) console.log(err);
     else res.send('ok');
   })
-})
-
-app.post('/news',middleware.confirmLogin,(req,res)=>{
-  var title= req.body.title;
-  var data= {};
-  data.title= title;
-  data.content="lai trung kien";
-  res.send(data);
 })
 
 mongoose.connect(config.connectionString, (err) => {

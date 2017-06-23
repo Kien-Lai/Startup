@@ -4,33 +4,22 @@
   $(document).ready(function(){
     $('.title').click(function() {
       $.ajax({
-                 url : "../news", // gửi ajax đến file result.php
+                 url : "../getPost", // gửi ajax đến file result.php
                  type : "post", // chọn phương thức gửi là get
                  dateType:"json", // dữ liệu trả về dạng text
                  data : { // Danh sách các thuộc tính sẽ gửi đi
                       title : $(this).html()
                  },
                  success : function (result){
-                     alert(result.content);
                      var data="";
                      data+='<div class="news" class="block_slidedown"><div class="row"><div class="col s2 l2"><img src="../images/home.png" alt=""></div><div class="col s10 l10">';
-                     data+= '<a href="#" class="title" onclick="loadContent()">'+result.title+' Linh Ka thi vào cấp ba đạt 10,75 điểm hai môn</a>';
+                     data+= '<a href="#" class="title" onclick="loadContent()">'+result.title+'</a>';
                      data+='<hr><p>'+result.content+'</p></div></div></div>';
                      $('#posts').html(data);
                  }
       });
     })
   })
-  // var loadContent= function(){
-  //   $.ajax({
-  //     url: "../news",
-  //     type:"get",
-  //     dataType: "json",
-  //     data: {
-  //       name: $('')
-  //     }
-  //   })
-  // }
 </script>
 
 <div class="wrapper-nav">
@@ -70,41 +59,19 @@
     </div>
   </div>
   <div class="col s10 l10" id="posts">
+    {{#each news}}
     <div class="news" class="block_slidedown">
       <div class="row">
         <div class="col s2 l2">
           <img src="../images/home.png" alt="">
         </div>
         <div class="col s10 l10">
-          <a href="#" class='title' onclick="loadContent()">'Hot girl 10X' Linh Ka thi vào cấp ba đạt 10,75 điểm hai môn</a>
+          <a href="#" class='title' onclick="loadContent()">{{this.title}}</a>
           <hr>
-          <p>Kết quả thi vào lớp 10 của nữ sinh khiến nhiều người ngạc nhiên vì trước đó 10X từng cho biết cô đạt thành tích học sinh khá giỏi nhiều năm liền.</p>
+          <p>{{this.topic}}</p>
         </div>
       </div>
     </div>
-    <div class="news" class="block_slidedown">
-      <div class="row">
-        <div class="col s2 l2">
-          <img src="../images/home.png" alt="">
-        </div>
-        <div class="col s10 l10">
-          <a href="#" class='title'>Gặp gỡ giám đốc vận hành của StartUp triệu đô</a>
-          <hr>
-          <p>Gặp gỡ chàng giám đốc trẻ có avatar hình khủng long xanh</p>
-        </div>
-      </div>
-    </div>
-    <div class="news" class="block_slidedown">
-      <div class="row">
-        <div class="col s2 l2">
-          <img src="../images/home.png" alt="">
-        </div>
-        <div class="col s10 l10">
-          <a href="#" class='title'>Chàng trai trình độ thách đấu với rank vàng 3</a>
-          <hr>
-          <p></p>
-        </div>
-      </div>
-    </div>
+    {{/each}}
   </div>
 </div>
