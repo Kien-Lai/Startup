@@ -291,7 +291,8 @@ app.post('/result',middleware.confirmLogin, (req,res)=>{
                           level: exam.level,
                           subject: exam.subject,
                           score:  Math.round((doc.numberOfTrueAnswer/exam.numberOfQuestions)*10*1000)/1000,
-                          name: exam.name
+                          name: exam.name,
+                          school : exam.school
                         };
                         historyController.addHistory(historyData,(err,done)=>{
                           if(err) console.log(err);
@@ -328,7 +329,8 @@ app.post('/result',middleware.confirmLogin, (req,res)=>{
                   level: exam.level,
                   subject: exam.subject,
                   score:  Math.round((doc.numberOfTrueAnswer/exam.numberOfQuestions)*10*1000)/1000,
-                  name: exam.name
+                  name: exam.name,
+                  school : exam.school
                 }
                 historyController.addHistory(coreHistory,(err,done)=>{
                   if(err) console.log(err);
@@ -366,7 +368,8 @@ app.post('/news',(req,res) => {
     title: req.body.title,
     imageLink : req.body.title,
     content: req.body.content,
-    topic: req.body.topic
+    brief: req.body.brief,
+    catology: req.body.catology
   }
   newsController.upNews(data,(err,doc) => {
     if(err) res.send('đã xảy ra lỗi');
@@ -405,7 +408,7 @@ app.get('/progess',middleware.confirmLogin,(req,res)=>{
        return value.score;
       })
       var nameEasy = docEasy.map((value) => {
-        return value.name;
+        return value.school;
       })
       historyController.getPointMedium(data,(err,docMedium) => {
          if(err) res.send('đã xảy ra lỗi');
@@ -414,7 +417,7 @@ app.get('/progess',middleware.confirmLogin,(req,res)=>{
             return value.score;
           })
           var nameMedium = docMedium.map((value) => {
-            return value.name;
+            return value.school;
            })
            historyController.getPointDifficult(data,(err,docDifficult) => {
               if(err) res.send('đã xảy ra lỗi');
@@ -423,7 +426,7 @@ app.get('/progess',middleware.confirmLogin,(req,res)=>{
                  return value.score;
                 })
                 var nameDifficult = docDifficult.map((value) => {
-                  return value.name;
+                  return value.school;
                 })
                 historyController.getPointAll(data,(err,docAll) => {
                    if(err) res.send('đã xảy ra lỗi');
@@ -432,7 +435,7 @@ app.get('/progess',middleware.confirmLogin,(req,res)=>{
                       return value.score;
                      })
                     var nameAll = docAll.map((value) => {
-                      return value.name;
+                      return value.school;
                      })
                      res.render('progess',{pointEasy: pointEasy,nameEasy: nameEasy,pointDifficult: pointDifficult,nameDifficult: nameDifficult,pointMedium:pointMedium,
                      pointAll:pointAll,nameAll:nameAll,nameMedium: nameMedium, user: req.user});

@@ -11,6 +11,7 @@ const historySchema = new mongoose.Schema({
   subject : {type: String,required: true},
   level: {type : String,required: true},
   score: {type : Number,required:true},
-  name:{type : String}
+  name:{type : String},
+  school: {type: String}
 })
 module.exports = mongoose.model('history',historySchema);
