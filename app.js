@@ -395,7 +395,7 @@ app.post('/getPost',(req,res)=>{
 
 app.get('/progess',middleware.confirmLogin,(req,res)=>{
   var data = {
-   subject : 'math',
+   subject : req.query.subject,
    userId : req.user.id
   }
   historyController.getPointEasy(data,(err,docEasy) => {
