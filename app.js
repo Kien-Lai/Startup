@@ -66,7 +66,7 @@ app.get('/home/math',middleware.confirmLogin,(req,res) => {
           quotesController.getRandomQuote((err,quote) => {
             if(err) res.send(err);
             else {
-              res.render('home',{user: req.user, exams: data, subject: 'math',message:req.flash().success,top10:doc,quote:quote[0].quote});
+               res.render('home',{user: req.user, exams: data, subject: 'math',message:req.flash().success,top10:doc,quote:quote[0].quote});
             }
           })
         }
@@ -74,6 +74,15 @@ app.get('/home/math',middleware.confirmLogin,(req,res) => {
     }
   })
 });
+
+app.get('/checkFirst',middleware.confirmLogin, (req,res) => {
+  historyController.checkFirst("Chuyên Hùng Vương lần 1",req.user.id,(err,doc) => {
+    if(err) res.send('da xay ra loi');
+    else {
+      res.send(doc);
+    }
+  })
+})
 
 app.get('/home/phy',middleware.confirmLogin,(req,res) => {
   examsController.getAllExamsOfPhy((err, data)=>{
