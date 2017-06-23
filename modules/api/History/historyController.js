@@ -88,34 +88,17 @@ var getPointAll= (data,cb) => {
     })
 }
 
-var checkFirst = (data,userId,cb) => {
-  var lastData = [];
-  var array = [];
-  array = data;
-  array.forEach((exam) => {
-    getHistoryByExamId(exam.id,userId,(err,doc) => {
-      if(err){
-        return cb(err);
-      }
-      else{
-        if(doc == null) {
-          lastData.push({
-            level: exam.level,
-            name: exam.name,
-            firstTime: true
-          })
-        }else{
-          lastData.push({
-            level: exam.level,
-            name: exam.name,
-            firstTime: false
-          })
-        }
-        return cb(null,lastData);
-      }
-    })
+var checkFirst = (examName,userId,cb) => {
+  historyModel.findOne({name: examName,userIdCreated: userId})
+  .exec((err,doc) => {
+    if(err) return cb(err);
+    else{
+      if(doc == null) return cb(null,true);
+      else return cb(null,false);
+    }
   })
 }
+
 module.exports = {
   addHistory,
   showHistory,
