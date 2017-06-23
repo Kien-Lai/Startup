@@ -75,11 +75,14 @@ app.get('/home/math',middleware.confirmLogin,(req,res) => {
   })
 });
 
-app.get('/checkFirst',middleware.confirmLogin, (req,res) => {
-  historyController.checkFirst("Chuyên Hùng Vương lần 1",req.user.id,(err,doc) => {
+app.post('/checkFirst',middleware.confirmLogin, (req,res) => {
+  historyController.checkFirst(req.body.name,req.user.id,(err,doc) => {
     if(err) res.send('da xay ra loi');
     else {
-      res.send(doc);
+      var result={
+        check: doc
+      }
+      res.send(result);
     }
   })
 })
