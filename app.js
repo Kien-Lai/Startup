@@ -68,7 +68,10 @@ app.get('/home/math',middleware.confirmLogin,(req,res) => {
           quotesController.getRandomQuote((err,quote) => {
             if(err) res.send(err);
             else {
-               res.render('home',{user: req.user, exams: data, subject: 'math',message:req.flash().success,top10:doc,quote:quote[0].quote});
+              data.forEach((element)=>{
+                element.subject= 'Math';
+              })
+              res.render('home',{user: req.user, exams: data, subject: 'math',message:req.flash().success,top10:doc,quote:quote[0].quote});
             }
           })
         }
@@ -100,7 +103,10 @@ app.get('/home/phy',middleware.confirmLogin,(req,res) => {
           quotesController.getRandomQuote((err,quote) => {
             if(err) res.send(err);
             else {
-              res.render('home',{user: req.user, exams: data, subject: 'phy',message:req.flash().success,top10:doc,quote:quote[0].quote});
+              data.forEach((element)=>{
+                element.subject= 'Physic';
+              })
+              res.render('home',{user: req.user, exams: data, subject: 'math',message:req.flash().success,top10:doc,quote:quote[0].quote});
             }
           })
         }
@@ -121,7 +127,10 @@ app.get('/home/chem',middleware.confirmLogin,(req,res) => {
           quotesController.getRandomQuote((err,quote) => {
             if(err) res.send(err);
             else {
-              res.render('home',{user: req.user, exams: data, subject: 'chem',message:req.flash().success,top10:doc,quote:quote[0].quote});
+              data.forEach((element)=>{
+                element.subject= 'Chemistry';
+              })
+              res.render('home',{user: req.user, exams: data, subject: 'math',message:req.flash().success,top10:doc,quote:quote[0].quote});
             }
           })
         }
@@ -144,7 +153,10 @@ app.get('/home/bio',middleware.confirmLogin,(req,res) => {
               quotesController.getRandomQuote((err,quote) => {
                 if(err) res.send(err);
                 else {
-                  res.render('home',{user: req.user, exams: data, subject: 'bio',message:req.flash().success,top10:doc,quote:quote[0].quote});
+                  data.forEach((element)=>{
+                    element.subject= 'Biology';
+                  })
+                  res.render('home',{user: req.user, exams: data, subject: 'math',message:req.flash().success,top10:doc,quote:quote[0].quote});
                 }
               })
             }
@@ -166,7 +178,10 @@ app.get('/home/eng',middleware.confirmLogin,(req,res) => {
           quotesController.getRandomQuote((err,quote) => {
             if(err) res.send(err);
             else {
-              res.render('home',{user: req.user, exams: data, subject: 'eng',message:req.flash().success,top10:doc,quote:quote[0].quote});
+              data.forEach((element)=>{
+                element.subject= 'English';
+              })
+              res.render('home',{user: req.user, exams: data, subject: 'math',message:req.flash().success,top10:doc,quote:quote[0].quote});
             }
           })
         }
@@ -176,7 +191,7 @@ app.get('/home/eng',middleware.confirmLogin,(req,res) => {
 });
 
 app.get('/exam',middleware.confirmLogin, (req,res)=>{
-  res.render('exam',{nameOfExam:req.query.nameOfExam, user:req.user});
+  res.render('exam',{nameOfExam:req.query.nameOfExam, user:req.user, subject: req.query.subject});
 });
 
 app.post('/result',middleware.confirmLogin, (req,res)=>{
