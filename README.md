@@ -3,3 +3,6 @@ Các chức năng chính của trang web: <br>
 -Xếp hạng người dùng dựa trên điểm tích luỹ sau các bài thi. <br>
 -Theo dõi quá trình học tập của bản thân theo từng môn học.Toàn bộ điểm các bài thi của các bạn được lưu lại và thể hiện dưới dang biểu đồ. <br>
 -Đọc tin tức được chia theo chủ đề.	<br>
+- Kĩ thuật:<br>
++ Frontend: Materializecss, jquery, chartjs, peerjs <br>
++ Backend: Nodejs <br>
